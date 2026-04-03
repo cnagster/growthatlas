@@ -166,20 +166,58 @@ export default function TableDatePicker({
               })}
             </div>
 
-            {/* Footer */}
-            <div className="mt-2 pt-2 border-t border-cream-dark flex items-center justify-between">
-              <span className="text-[10px] text-gray-400">{displayLabel}</span>
-              {!isFullRange && (
-                <button
-                  onClick={() => {
-                    applyPreset([options[0].value, options[options.length - 1].value])
-                    setOpen(false)
+            {/* Custom range selectors */}
+            <div className="mt-2 pt-2 border-t border-cream-dark">
+              <div className="flex items-center gap-2">
+                <select
+                  value={selectedRange[0]}
+                  onChange={e => {
+                    const newStart = e.target.value
+                    const startIdx = options.findIndex(o => o.value === newStart)
+                    const endIdx = options.findIndex(o => o.value === selectedRange[1])
+                    if (startIdx <= endIdx) {
+                      onRangeChange([newStart, selectedRange[1]])
+                    } else {
+                      onRangeChange([newStart, newStart])
+                    }
                   }}
-                  className="text-[10px] px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
+                  className="text-[10px] border border-cream-dark rounded px-1.5 py-1 text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-chart flex-1 min-w-0"
                 >
-                  Reset
-                </button>
-              )}
+                  {options.map(o => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+                <span className="text-[10px] text-gray-400">to</span>
+                <select
+                  value={selectedRange[1]}
+                  onChange={e => {
+                    const newEnd = e.target.value
+                    const startIdx = options.findIndex(o => o.value === selectedRange[0])
+                    const endIdx = options.findIndex(o => o.value === newEnd)
+                    if (endIdx >= startIdx) {
+                      onRangeChange([selectedRange[0], newEnd])
+                    } else {
+                      onRangeChange([newEnd, newEnd])
+                    }
+                  }}
+                  className="text-[10px] border border-cream-dark rounded px-1.5 py-1 text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-chart flex-1 min-w-0"
+                >
+                  {options.map(o => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+                {!isFullRange && (
+                  <button
+                    onClick={() => {
+                      applyPreset([options[0].value, options[options.length - 1].value])
+                      setOpen(false)
+                    }}
+                    className="text-[10px] px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors whitespace-nowrap"
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>

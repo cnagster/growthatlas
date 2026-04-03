@@ -15,24 +15,21 @@ const MONTH_LABEL = 'March 2026'
 const START_DAY_OF_WEEK = 0
 const DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
-// "Today" is March 18, 2026
-const TODAY = 18
+// Last day with data
+const TODAY = 31
 
 // Preset filters — ranges are [startDay, endDay] within March
-// Presets that extend beyond March data are clamped to available range
 const presets: { label: string; range: DateRange | null }[] = [
   { label: 'Yesterday', range: [TODAY - 1, TODAY - 1] },
   { label: 'Last 7 Days', range: [TODAY - 6, TODAY] },
-  { label: 'Last 30 Days', range: [1, TODAY] }, // clamped to month start
-  { label: 'Last Week', range: [8, 14] }, // Sun Mar 8 – Sat Mar 14
-  { label: 'Last Month', range: null }, // February — no data
-  { label: 'Last Quarter', range: null }, // Q4 2025 — no data
-  { label: 'Last Year', range: null }, // 2025 — no data
-  { label: 'Week to Date', range: [15, TODAY] }, // Current week Sun Mar 15 – today
+  { label: 'Last 14 Days', range: [TODAY - 13, TODAY] },
+  { label: 'Last 30 Days', range: [1, TODAY] },
+  { label: 'Last Week', range: [22, 28] }, // Sun Mar 22 – Sat Mar 28
+  { label: 'Week to Date', range: [29, TODAY] }, // Sun Mar 29 – today
   { label: 'Month to Date', range: [1, TODAY] },
-  { label: 'Quarter to Date', range: [1, TODAY] }, // Q1 starts Jan, clamped to March
-  { label: 'Year to Date', range: [1, TODAY] }, // clamped to March
-  { label: 'BFCM (Last Year)', range: null }, // Nov 2025 — no data
+  { label: 'Full Month', range: [1, DAYS_IN_MARCH] },
+  { label: 'First Half', range: [1, 15] },
+  { label: 'Second Half', range: [16, DAYS_IN_MARCH] },
 ]
 
 function formatRange(range: DateRange): string {
@@ -42,11 +39,23 @@ function formatRange(range: DateRange): string {
   return `Mar ${start} – Mar ${end}`
 }
 
+function clampDay(d: number): number {
+  return Math.max(1, Math.min(DAYS_IN_MARCH, d))
+}
+
 export default function DateRangePicker({ dateRange, onDateRangeChange }: DateRangePickerProps) {
   const [open, setOpen] = useState(false)
   const [selecting, setSelecting] = useState<'start' | 'end'>('start')
   const [tempStart, setTempStart] = useState<number | null>(null)
+  const [customStart, setCustomStart] = useState(String(dateRange[0]))
+  const [customEnd, setCustomEnd] = useState(String(dateRange[1]))
   const ref = useRef<HTMLDivElement>(null)
+
+  // Sync custom inputs when dateRange changes externally
+  useEffect(() => {
+    setCustomStart(String(dateRange[0]))
+    setCustomEnd(String(dateRange[1]))
+  }, [dateRange])
 
   // Close on outside click
   useEffect(() => {
@@ -80,6 +89,20 @@ export default function DateRangePicker({ dateRange, onDateRangeChange }: DateRa
       setTempStart(null)
     }
   }, [selecting, tempStart, onDateRangeChange])
+
+  const handleCustomApply = useCallback(() => {
+    const s = clampDay(parseInt(customStart) || 1)
+    const e = clampDay(parseInt(customEnd) || DAYS_IN_MARCH)
+    const newRange: DateRange = s <= e ? [s, e] : [e, s]
+    onDateRangeChange(newRange)
+    setOpen(false)
+    setSelecting('start')
+    setTempStart(null)
+  }, [customStart, customEnd, onDateRangeChange])
+
+  const handleCustomKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') handleCustomApply()
+  }, [handleCustomApply])
 
   // Build calendar grid
   const blanks = START_DAY_OF_WEEK
@@ -121,9 +144,9 @@ export default function DateRangePicker({ dateRange, onDateRangeChange }: DateRa
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-1 z-50 bg-white rounded-lg border border-cream-dark shadow-lg flex w-[460px]">
+        <div className="absolute right-0 top-full mt-1 z-50 bg-white rounded-lg border border-cream-dark shadow-lg flex w-[500px]">
           {/* Presets sidebar */}
-          <div className="w-[170px] border-r border-cream-dark p-2 flex flex-col gap-0.5">
+          <div className="w-[150px] border-r border-cream-dark p-2 flex flex-col gap-0.5">
             {presets.map(p => (
               <button
                 key={p.label}
@@ -183,17 +206,44 @@ export default function DateRangePicker({ dateRange, onDateRangeChange }: DateRa
               })}
             </div>
 
-            {/* Custom range display */}
-            <div className="mt-2 pt-2 border-t border-cream-dark flex items-center justify-between">
-              <span className="text-[10px] text-gray-400">
-                {formatRange(dateRange)}
-              </span>
-              <button
-                onClick={() => { applyPreset([1, DAYS_IN_MARCH]); setOpen(false) }}
-                className="text-[10px] px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
-              >
-                Reset
-              </button>
+            {/* Custom date inputs */}
+            <div className="mt-3 pt-2 border-t border-cream-dark">
+              <div className="text-[10px] text-gray-400 mb-1.5 font-medium">Custom Range (day of March)</div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="number"
+                  min={1}
+                  max={DAYS_IN_MARCH}
+                  value={customStart}
+                  onChange={e => setCustomStart(e.target.value)}
+                  onKeyDown={handleCustomKeyDown}
+                  placeholder="1"
+                  className="w-14 text-xs border border-cream-dark rounded px-2 py-1 text-center text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-chart"
+                />
+                <span className="text-[10px] text-gray-400">to</span>
+                <input
+                  type="number"
+                  min={1}
+                  max={DAYS_IN_MARCH}
+                  value={customEnd}
+                  onChange={e => setCustomEnd(e.target.value)}
+                  onKeyDown={handleCustomKeyDown}
+                  placeholder="31"
+                  className="w-14 text-xs border border-cream-dark rounded px-2 py-1 text-center text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-chart"
+                />
+                <button
+                  onClick={handleCustomApply}
+                  className="text-[10px] px-3 py-1 rounded bg-teal-chart text-white font-medium hover:bg-teal-600 transition-colors"
+                >
+                  Apply
+                </button>
+                <button
+                  onClick={() => { applyPreset([1, DAYS_IN_MARCH]); setOpen(false) }}
+                  className="text-[10px] px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
+                >
+                  Reset
+                </button>
+              </div>
             </div>
           </div>
         </div>

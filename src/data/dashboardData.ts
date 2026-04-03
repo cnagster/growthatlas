@@ -381,8 +381,8 @@ export function getFilteredKPIs(range: DateRange) {
 // Hourly view data (Today's cumulative revenue by hour)
 // ============================================================
 
-// L7D average daily new revenue: average of last 7 days (Mar 12-18)
-const l7dDays = dailyMetrics.slice(11, 18); // indices 11-17 = days 12-18
+// L7D average daily new revenue: average of last 7 days (Mar 25-31)
+const l7dDays = dailyMetrics.slice(24, 31); // indices 24-30 = days 25-31
 const l7dAvgDailyNewRevenue = l7dDays.reduce((s, d) => s + d.newRevenue, 0) / l7dDays.length;
 const l7dAvgDailyTotalRevenue = l7dDays.reduce((s, d) => s + d.totalRevenue, 0) / l7dDays.length;
 const l7dAvgDailySpend = l7dDays.reduce((s, d) => s + d.spend, 0) / l7dDays.length;
@@ -394,8 +394,8 @@ const hourlyWeights = [
   0.065, 0.070, 0.075, 0.065, 0.055, 0.040, 0.030, 0.027,
 ];
 
-// Today = March 18 data
-const todayData = dailyMetrics[17]; // index 17 = March 18
+// Today = March 31 data (last day with data)
+const todayData = dailyMetrics[30]; // index 30 = March 31
 
 // Generate hourly cumulative data
 export const hourlyRevenueData = (() => {
