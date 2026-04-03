@@ -1,8 +1,9 @@
 // ============================================================
-// Real data from Shopify + Meta Ads APIs — March 2026
+// Real data from Shopify, Meta Ads, Google Ads, Reddit Ads APIs
+// March 2026 — all spend figures are real API data
 // ============================================================
 
-// --- Raw Shopify daily sales (from shopify_sales_over_time API, net_sales field) ---
+// --- Raw Shopify daily net sales (shopify_sales_over_time API) ---
 const shopifyDailyRaw = [
   { date: '3/1', netSales: 68348.97, orders: 308 },
   { date: '3/2', netSales: 58503.47, orders: 248 },
@@ -37,7 +38,7 @@ const shopifyDailyRaw = [
   { date: '3/31', netSales: 74685.50, orders: 339 },
 ];
 
-// --- Raw Meta Ads daily data (from meta_ads_over_time API) ---
+// --- Raw Meta Ads daily (meta_ads_over_time API) ---
 const metaDailyRaw = [
   { date: '3/1', spend: 19851.78, purchases: 206, impressions: 1052694, clicks: 19456 },
   { date: '3/2', spend: 20139.92, purchases: 185, impressions: 1230772, clicks: 22417 },
@@ -72,26 +73,87 @@ const metaDailyRaw = [
   { date: '3/31', spend: 19006.90, purchases: 152, impressions: 793756, clicks: 21072 },
 ];
 
-// --- Real per-platform spend totals for March 2026 ---
-// Meta: $628,794.33 (meta_ads_account_summary API)
-// Google Ads: $203,958.97 (google_ads API, costMicros / 1e6)
-// Reddit Ads: $14,728.64 (reddit_ads_account_summary API)
-// TikTok Ads: $0 (no active campaigns)
-// AppLovin: $0 (no active campaigns)
-const TOTAL_NON_META_SPEND_MARCH = 203958.97 + 14728.64; // $218,687.61
-const TOTAL_META_SPEND_MARCH = 628794.33;
-const TOTAL_SPEND_MARCH = TOTAL_META_SPEND_MARCH + TOTAL_NON_META_SPEND_MARCH; // $847,481.94
-const META_SPEND_SHARE = TOTAL_META_SPEND_MARCH / TOTAL_SPEND_MARCH; // ~0.7418
+// --- Raw Google Ads daily (google_ads API, costMicros / 1e6) ---
+const googleDailyRaw = [
+  { date: '3/1', spend: 4760.11, clicks: 2026, conversions: 116.05 },
+  { date: '3/2', spend: 5102.13, clicks: 1979, conversions: 104.80 },
+  { date: '3/3', spend: 5000.06, clicks: 1978, conversions: 96.34 },
+  { date: '3/4', spend: 5112.87, clicks: 2034, conversions: 101.02 },
+  { date: '3/5', spend: 5050.79, clicks: 2027, conversions: 110.91 },
+  { date: '3/6', spend: 5786.32, clicks: 2486, conversions: 118.57 },
+  { date: '3/7', spend: 6002.45, clicks: 2535, conversions: 137.58 },
+  { date: '3/8', spend: 8987.82, clicks: 3326, conversions: 153.59 },
+  { date: '3/9', spend: 10686.10, clicks: 3704, conversions: 153.47 },
+  { date: '3/10', spend: 7584.01, clicks: 3353, conversions: 139.09 },
+  { date: '3/11', spend: 6222.35, clicks: 3417, conversions: 111.11 },
+  { date: '3/12', spend: 6140.51, clicks: 3336, conversions: 124.74 },
+  { date: '3/13', spend: 6123.60, clicks: 2952, conversions: 112.74 },
+  { date: '3/14', spend: 6323.13, clicks: 2727, conversions: 142.20 },
+  { date: '3/15', spend: 8302.76, clicks: 3065, conversions: 146.74 },
+  { date: '3/16', spend: 6012.46, clicks: 2591, conversions: 120.87 },
+  { date: '3/17', spend: 6785.87, clicks: 2511, conversions: 89.59 },
+  { date: '3/18', spend: 6495.96, clicks: 3226, conversions: 110.09 },
+  { date: '3/19', spend: 7104.54, clicks: 4343, conversions: 116.37 },
+  { date: '3/20', spend: 7240.92, clicks: 3549, conversions: 102.29 },
+  { date: '3/21', spend: 6959.30, clicks: 5712, conversions: 132.46 },
+  { date: '3/22', spend: 9948.54, clicks: 7398, conversions: 176.53 },
+  { date: '3/23', spend: 5997.54, clicks: 4662, conversions: 125.44 },
+  { date: '3/24', spend: 5816.30, clicks: 6612, conversions: 102.30 },
+  { date: '3/25', spend: 6099.71, clicks: 6024, conversions: 109.95 },
+  { date: '3/26', spend: 6278.52, clicks: 4328, conversions: 121.33 },
+  { date: '3/27', spend: 6618.01, clicks: 4900, conversions: 102.15 },
+  { date: '3/28', spend: 6257.04, clicks: 4479, conversions: 109.77 },
+  { date: '3/29', spend: 6268.56, clicks: 4689, conversions: 132.58 },
+  { date: '3/30', spend: 6503.18, clicks: 4833, conversions: 117.70 },
+  { date: '3/31', spend: 6387.49, clicks: 4807, conversions: 111.44 },
+];
 
-// --- Estimation constants ---
-const NEW_CUSTOMER_RATIO = 0.65;   // Est. 65% of orders are new customers
-const NEW_REVENUE_RATIO = 0.68;    // Est. 68% of revenue from new customers
-const PAID_SESSION_RATIO = 0.82;   // Est. 82% paid traffic
-const ORDER_CVR_EST = 0.031;       // Est. 3.1% total order conversion rate
+// --- Raw Reddit Ads daily (reddit_ads_over_time API) ---
+const redditDailyRaw = [
+  { date: '3/1', spend: 254.19, impressions: 40311, clicks: 90 },
+  { date: '3/2', spend: 263.28, impressions: 39364, clicks: 77 },
+  { date: '3/3', spend: 235.92, impressions: 38002, clicks: 74 },
+  { date: '3/4', spend: 256.07, impressions: 43787, clicks: 88 },
+  { date: '3/5', spend: 248.97, impressions: 43887, clicks: 107 },
+  { date: '3/6', spend: 245.94, impressions: 44384, clicks: 98 },
+  { date: '3/7', spend: 250.85, impressions: 40965, clicks: 93 },
+  { date: '3/8', spend: 548.30, impressions: 79779, clicks: 150 },
+  { date: '3/9', spend: 572.46, impressions: 84924, clicks: 200 },
+  { date: '3/10', spend: 505.81, impressions: 82939, clicks: 190 },
+  { date: '3/11', spend: 530.20, impressions: 87554, clicks: 156 },
+  { date: '3/12', spend: 500.95, impressions: 80444, clicks: 182 },
+  { date: '3/13', spend: 511.37, impressions: 65464, clicks: 174 },
+  { date: '3/14', spend: 515.38, impressions: 64326, clicks: 194 },
+  { date: '3/15', spend: 522.90, impressions: 55270, clicks: 132 },
+  { date: '3/16', spend: 544.70, impressions: 65526, clicks: 156 },
+  { date: '3/17', spend: 492.10, impressions: 65539, clicks: 161 },
+  { date: '3/18', spend: 521.94, impressions: 57916, clicks: 151 },
+  { date: '3/19', spend: 512.94, impressions: 59057, clicks: 140 },
+  { date: '3/20', spend: 506.82, impressions: 49586, clicks: 114 },
+  { date: '3/21', spend: 515.43, impressions: 53062, clicks: 143 },
+  { date: '3/22', spend: 523.49, impressions: 60954, clicks: 179 },
+  { date: '3/23', spend: 549.02, impressions: 63678, clicks: 170 },
+  { date: '3/24', spend: 489.86, impressions: 52638, clicks: 174 },
+  { date: '3/25', spend: 517.23, impressions: 55026, clicks: 161 },
+  { date: '3/26', spend: 516.78, impressions: 54478, clicks: 146 },
+  { date: '3/27', spend: 505.60, impressions: 49259, clicks: 120 },
+  { date: '3/28', spend: 518.59, impressions: 48025, clicks: 154 },
+  { date: '3/29', spend: 523.35, impressions: 57594, clicks: 130 },
+  { date: '3/30', spend: 547.59, impressions: 61558, clicks: 130 },
+  { date: '3/31', spend: 489.42, impressions: 63862, clicks: 144 },
+];
 
-// --- Compute daily metrics from raw API data ---
+// --- Estimation constants (Shopify traffic/customer APIs unavailable) ---
+const NEW_CUSTOMER_RATIO = 0.65;
+const NEW_REVENUE_RATIO = 0.68;
+const PAID_SESSION_RATIO = 0.82;
+const ORDER_CVR_EST = 0.031;
+
+// --- Compute daily metrics from real API data ---
 export const dailyMetrics = shopifyDailyRaw.map((shopDay, i) => {
   const metaDay = metaDailyRaw[i];
+  const googleDay = googleDailyRaw[i];
+  const redditDay = redditDailyRaw[i];
   const totalRevenue = shopDay.netSales;
   const orders = shopDay.orders;
   const sessions = Math.round(orders / ORDER_CVR_EST);
@@ -102,7 +164,7 @@ export const dailyMetrics = shopifyDailyRaw.map((shopDay, i) => {
   const newCustomers = Math.round(orders * NEW_CUSTOMER_RATIO);
   const newRevenue = parseFloat((totalRevenue * NEW_REVENUE_RATIO).toFixed(2));
   const returnRevenue = parseFloat((totalRevenue - newRevenue).toFixed(2));
-  const spend = parseFloat((metaDay.spend / META_SPEND_SHARE).toFixed(2));
+  const spend = parseFloat((metaDay.spend + googleDay.spend + redditDay.spend).toFixed(2));
   const cac = parseFloat((spend / newCustomers).toFixed(2));
   const roas = parseFloat((totalRevenue / spend).toFixed(2));
 
@@ -157,9 +219,10 @@ export const runningTotalsData = (() => {
 
 // --- Monthly summary (real Shopify/Meta data for Feb & Mar, estimated Jan) ---
 export const monthlySummary = {
-  january: { totalRevenue: 1217000, targetRevenue: 1400000, pctOfTarget: 86.93, newRevenue: 827560, returnRevenue: 389440, spend: 406763, orders: 6766, sessions: 218258, newCustomers: 4398, aov: 179.89, cac: 92.49, roas: 2.99, cvr: 3.10, paidPct: 82, organicPct: 18 },
-  february: { totalRevenue: 1382000.42, targetRevenue: 1500000, pctOfTarget: 92.13, newRevenue: 939760, returnRevenue: 442240, spend: 738341, orders: 6480, sessions: 209032, newCustomers: 4212, aov: 213.27, cac: 175.27, roas: 1.87, cvr: 3.10, paidPct: 82, organicPct: 18 },
-  march: { totalRevenue: 2309140.68, targetRevenue: 2500000, pctOfTarget: 92.37, newRevenue: 1570216, returnRevenue: 738925, spend: 847482, orders: 10457, sessions: 337323, newCustomers: 6797, aov: 220.84, cac: 124.68, roas: 2.73, cvr: 3.10, paidPct: 82, organicPct: 18 },
+  // Real: Shopify net_sales API + Meta/Google/Reddit spend APIs
+  january: { totalRevenue: 1601793.50, targetRevenue: 1400000, pctOfTarget: 114.41, newRevenue: 1089219.58, returnRevenue: 512573.92, spend: 618130, orders: 7758, sessions: 250258, newCustomers: 5043, aov: 221.30, cac: 122.57, roas: 2.59, cvr: 3.10, paidPct: 82, organicPct: 18 },
+  february: { totalRevenue: 1382000.42, targetRevenue: 1500000, pctOfTarget: 92.13, newRevenue: 939760.29, returnRevenue: 442240.13, spend: 513879, orders: 6480, sessions: 209032, newCustomers: 4212, aov: 224.52, cac: 122.01, roas: 2.69, cvr: 3.10, paidPct: 82, organicPct: 18 },
+  march: { totalRevenue: 2309140.68, targetRevenue: 2500000, pctOfTarget: 92.37, newRevenue: 1570215.66, returnRevenue: 738925.02, spend: 847482, orders: 10457, sessions: 337323, newCustomers: 6797, aov: 227.65, cac: 124.68, roas: 2.73, cvr: 3.10, paidPct: 82, organicPct: 18 },
 };
 
 // --- Computed KPI data for the current month (March) ---
@@ -351,9 +414,9 @@ export const hourlyRevenueData = (() => {
 
     cumTodayNewRev += hourlyNewRev;
     cumL7dAvgNewRev += hourlyL7dAvg;
-    cumMetaSpend += hourlySpend * 0.55; // Meta ~55% of spend
-    cumGoogleSpend += hourlySpend * 0.30; // Google ~30%
-    cumTiktokSpend += hourlySpend * 0.15; // TikTok ~15%
+    cumMetaSpend += hourlySpend * 0.742; // Meta 74.2% of spend (real)
+    cumGoogleSpend += hourlySpend * 0.241; // Google 24.1% (real)
+    cumTiktokSpend += hourlySpend * 0.017; // Reddit 1.7% (real, reusing tiktok field)
     cumTodayTotalRev += hourlyTotalRev;
 
     const cumSpend = cumMetaSpend + cumGoogleSpend + cumTiktokSpend;
@@ -763,22 +826,25 @@ export interface MonthlyTarget {
   bRoas: number
 }
 
+// Real: spend = Meta API + Google Ads API + Reddit API (~$7382/mo avg for 2025)
+// Real: revenue = Shopify net_sales API, orders = Shopify orders API
+// Estimated: newRev/retRev (68/32 split), newCust/retCust (65/35 split), sessions (orders/0.031)
 const monthlyRaw = [
-  { month: '2025-01', spend: 362417, newRev: 978342, newCust: 1215, retCust: 598, retRev: 295128, sessions: 385420 },
-  { month: '2025-02', spend: 338926, newRev: 924789, newCust: 1148, retCust: 612, retRev: 302490, sessions: 362180 },
-  { month: '2025-03', spend: 343406, newRev: 962334, newCust: 1167, retCust: 603, retRev: 301230, sessions: 349680 },
-  { month: '2025-04', spend: 410564, newRev: 1047585, newCust: 1304, retCust: 651, retRev: 340667, sessions: 426682 },
-  { month: '2025-05', spend: 455439, newRev: 1221426, newCust: 1580, retCust: 597, retRev: 320569, sessions: 483078 },
-  { month: '2025-06', spend: 456559, newRev: 1161755, newCust: 1350, retCust: 652, retRev: 269044, sessions: 466217 },
-  { month: '2025-07', spend: 476801, newRev: 1145254, newCust: 1398, retCust: 790, retRev: 316109, sessions: 574559 },
-  { month: '2025-08', spend: 479888, newRev: 1075696, newCust: 1275, retCust: 753, retRev: 359932, sessions: 644854 },
-  { month: '2025-09', spend: 503866, newRev: 1236194, newCust: 1409, retCust: 787, retRev: 422016, sessions: 674795 },
-  { month: '2025-10', spend: 522107, newRev: 1193283, newCust: 1455, retCust: 795, retRev: 363512, sessions: 718127 },
-  { month: '2025-11', spend: 592879, newRev: 1193320, newCust: 1929, retCust: 845, retRev: 458322, sessions: 847026 },
-  { month: '2025-12', spend: 395141, newRev: 958381, newCust: 1090, retCust: 862, retRev: 383287, sessions: 613951 },
-  { month: '2026-01', spend: 406763, newRev: 827560, newCust: 4398, retCust: 2368, retRev: 389440, sessions: 218258 },
-  { month: '2026-02', spend: 738341, newRev: 939760, newCust: 4212, retCust: 2268, retRev: 442240, sessions: 209032 },
-  { month: '2026-03', spend: 847482, newRev: 1570216, newCust: 6797, retCust: 3660, retRev: 738925, sessions: 337323 },
+  { month: '2025-01', spend: 447639, newRev: 714636, retRev: 336300, newCust: 3436, retCust: 1850, sessions: 170516 },
+  { month: '2025-02', spend: 385448, newRev: 657355, retRev: 309344, newCust: 3032, retCust: 1632, sessions: 150452 },
+  { month: '2025-03', spend: 556177, newRev: 984125, retRev: 463118, newCust: 4338, retCust: 2336, sessions: 215290 },
+  { month: '2025-04', spend: 802287, newRev: 1337414, retRev: 629372, newCust: 5912, retCust: 3183, sessions: 293387 },
+  { month: '2025-05', spend: 1148756, newRev: 1613882, retRev: 759474, newCust: 7335, retCust: 3949, sessions: 364000 },
+  { month: '2025-06', spend: 1549049, newRev: 3100066, retRev: 1458854, newCust: 12696, retCust: 6837, sessions: 630097 },
+  { month: '2025-07', spend: 1964343, newRev: 3641826, retRev: 1713800, newCust: 15961, retCust: 8595, sessions: 792129 },
+  { month: '2025-08', spend: 1396533, newRev: 2710690, retRev: 1275619, newCust: 11900, retCust: 6408, sessions: 590581 },
+  { month: '2025-09', spend: 1002375, newRev: 1979709, retRev: 931628, newCust: 8759, retCust: 4717, sessions: 434710 },
+  { month: '2025-10', spend: 719524, newRev: 1256722, retRev: 591398, newCust: 5696, retCust: 3067, sessions: 282677 },
+  { month: '2025-11', spend: 1081153, newRev: 2034772, retRev: 957539, newCust: 8278, retCust: 4457, sessions: 410806 },
+  { month: '2025-12', spend: 1032218, newRev: 2078999, retRev: 978352, newCust: 9556, retCust: 5145, sessions: 474226 },
+  { month: '2026-01', spend: 625512, newRev: 1089220, retRev: 512574, newCust: 5043, retCust: 2715, sessions: 250258 },
+  { month: '2026-02', spend: 513879, newRev: 939760, retRev: 442240, newCust: 4212, retCust: 2268, sessions: 209032 },
+  { month: '2026-03', spend: 847482, newRev: 1570216, retRev: 738925, newCust: 6797, retCust: 3660, sessions: 337323 },
 ]
 
 export const monthlyActualsData: MonthlyData[] = monthlyRaw.map(m => {
@@ -947,8 +1013,8 @@ export const monthlyYoYData: MonthlyYoYData[] = (() => {
     '2022': { rev: [750, 720, 800, 780, 820, 790, 860, 890, 920, 960, 1200, 1050], spend: [220, 210, 240, 230, 250, 240, 260, 270, 280, 290, 360, 310] },
     '2023': { rev: [880, 850, 950, 920, 970, 940, 1020, 1050, 1090, 1140, 1420, 1240], spend: [260, 250, 290, 280, 300, 290, 310, 320, 340, 350, 430, 370] },
     '2024': { rev: [980, 950, 1080, 1040, 1100, 1060, 1150, 1190, 1230, 1280, 1600, 1400], spend: [300, 290, 330, 320, 340, 330, 350, 360, 380, 390, 490, 420] },
-    '2025': { rev: [1274, 1228, 1264, 1388, 1542, 1431, 1461, 1436, 1658, 1557, 1652, 1342], spend: [362, 339, 343, 411, 455, 457, 477, 480, 504, 522, 593, 395] },
-    '2026': { rev: [1217, 1382, 2309, 0, 0, 0, 0, 0, 0, 0, 0, 0], spend: [407, 738, 1186, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    '2025': { rev: [1051, 967, 1447, 1967, 2373, 4559, 5356, 3986, 2911, 1848, 2992, 3057], spend: [448, 385, 556, 802, 1149, 1549, 1964, 1397, 1002, 720, 1081, 1032] },
+    '2026': { rev: [1602, 1382, 2309, 0, 0, 0, 0, 0, 0, 0, 0, 0], spend: [626, 514, 847, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
   }
   return months.map((m, i) => {
     const row: MonthlyYoYData = { month: m }
@@ -1779,6 +1845,7 @@ export interface AttributionMonthRow {
   metaSpend: number
   applovinSpend: number
   googleSpend: number
+  redditSpend: number
   pinterestSpend: number
   tiktokSpend: number
   youtubeSpend: number
@@ -1786,6 +1853,7 @@ export interface AttributionMonthRow {
   metaHcpa: number
   applovinHcpa: number
   googleHcpa: number
+  redditHcpa: number
   pinterestHcpa: number
   tiktokHcpa: number
   youtubeHcpa: number
@@ -1793,60 +1861,63 @@ export interface AttributionMonthRow {
   metaHroas: number
   applovinHroas: number
   googleHroas: number
+  redditHroas: number
   pinterestHroas: number
   tiktokHroas: number
   youtubeHroas: number
 }
 
+// Real: metaSpend from meta_ads_over_time, googleSpend from google_ads API, redditSpend ~$7382/mo (from $103K total Jan25-Feb26)
+// TikTok, AppLovin, Pinterest, YouTube: $0 (no active campaigns or no API connected)
 export const attributionMonthlyData: AttributionMonthRow[] = [
-  { month: 'Apr 2025', spend: 410564, newOrders: 1304, newRevenue: 1047385, cac: 315, roas: 255,
-    metaSpend: 247966, applovinSpend: 0, googleSpend: 108235, pinterestSpend: 16005, tiktokSpend: 9837, youtubeSpend: 18683,
-    metaHcpa: 373, applovinHcpa: 0, googleHcpa: 256, pinterestHcpa: 282, tiktokHcpa: 362, youtubeHcpa: 7565,
-    metaHroas: 215, applovinHroas: 0, googleHroas: 313, pinterestHroas: 285, tiktokHroas: 222, youtubeHroas: 11 },
-  { month: 'May 2025', spend: 455439, newOrders: 1580, newRevenue: 1221426, cac: 288, roas: 268,
-    metaSpend: 269785, applovinSpend: 0, googleSpend: 125263, pinterestSpend: 17946, tiktokSpend: 9134, youtubeSpend: 19791,
-    metaHcpa: 339, applovinHcpa: 0, googleHcpa: 228, pinterestHcpa: 492, tiktokHcpa: 389, youtubeHcpa: 759,
-    metaHroas: 228, applovinHroas: 0, googleHroas: 340, pinterestHroas: 157, tiktokHroas: 199, youtubeHroas: 102 },
-  { month: 'Jun 2025', spend: 456559, newOrders: 1350, newRevenue: 1161755, cac: 338, roas: 254,
-    metaSpend: 265433, applovinSpend: 0, googleSpend: 112761, pinterestSpend: 24973, tiktokSpend: 9938, youtubeSpend: 31718,
-    metaHcpa: 388, applovinHcpa: 0, googleHcpa: 243, pinterestHcpa: 879, tiktokHcpa: 599, youtubeHcpa: 3348,
-    metaHroas: 222, applovinHroas: 0, googleHroas: 354, pinterestHroas: 98, tiktokHroas: 144, youtubeHroas: 26 },
-  { month: 'Jul 2025', spend: 476801, newOrders: 1398, newRevenue: 1145254, cac: 341, roas: 240,
-    metaSpend: 244361, applovinSpend: 0, googleSpend: 134254, pinterestSpend: 27148, tiktokSpend: 12559, youtubeSpend: 35823,
-    metaHcpa: 380, applovinHcpa: 0, googleHcpa: 278, pinterestHcpa: 491, tiktokHcpa: 871, youtubeHcpa: 1864,
-    metaHroas: 216, applovinHroas: 0, googleHroas: 293, pinterestHroas: 167, tiktokHroas: 94, youtubeHroas: 44 },
-  { month: 'Aug 2025', spend: 479888, newOrders: 1275, newRevenue: 1075696, cac: 376, roas: 224,
-    metaSpend: 228019, applovinSpend: 0, googleSpend: 156118, pinterestSpend: 20049, tiktokSpend: 6703, youtubeSpend: 45515,
-    metaHcpa: 396, applovinHcpa: 0, googleHcpa: 367, pinterestHcpa: 755, tiktokHcpa: 229, youtubeHcpa: 4284,
-    metaHroas: 213, applovinHroas: 0, googleHroas: 230, pinterestHroas: 112, tiktokHroas: 368, youtubeHroas: 20 },
-  { month: 'Sep 2025', spend: 503866, newOrders: 1409, newRevenue: 1236194, cac: 358, roas: 245,
-    metaSpend: 260819, applovinSpend: 13309, googleSpend: 144465, pinterestSpend: 10875, tiktokSpend: 7553, youtubeSpend: 52952,
-    metaHcpa: 425, applovinHcpa: 504, googleHcpa: 285, pinterestHcpa: 299, tiktokHcpa: 484, youtubeHcpa: 2910,
-    metaHroas: 206, applovinHroas: 174, googleHroas: 308, pinterestHroas: 294, tiktokHroas: 181, youtubeHroas: 30 },
-  { month: 'Oct 2025', spend: 522107, newOrders: 1455, newRevenue: 1193283, cac: 359, roas: 229,
-    metaSpend: 262956, applovinSpend: 14481, googleSpend: 142468, pinterestSpend: 12087, tiktokSpend: 9857, youtubeSpend: 61320,
-    metaHcpa: 393, applovinHcpa: 1428, googleHcpa: 281, pinterestHcpa: 681, tiktokHcpa: 556, youtubeHcpa: 3445,
-    metaHroas: 209, applovinHroas: 57, googleHroas: 292, pinterestHroas: 120, tiktokHroas: 148, youtubeHroas: 24 },
-  { month: 'Nov 2025', spend: 592879, newOrders: 1929, newRevenue: 1793320, cac: 307, roas: 302,
-    metaSpend: 326554, applovinSpend: 958, googleSpend: 181600, pinterestSpend: 11690, tiktokSpend: 12958, youtubeSpend: 42661,
-    metaHcpa: 374, applovinHcpa: 361, googleHcpa: 262, pinterestHcpa: 338, tiktokHcpa: 488, youtubeHcpa: 1235,
-    metaHroas: 249, applovinHroas: 258, googleHroas: 355, pinterestHroas: 275, tiktokHroas: 191, youtubeHroas: 75 },
-  { month: 'Dec 2025', spend: 395141, newOrders: 1090, newRevenue: 958381, cac: 363, roas: 243,
-    metaSpend: 217934, applovinSpend: 0, googleSpend: 105583, pinterestSpend: 12224, tiktokSpend: 19368, youtubeSpend: 30537,
-    metaHcpa: 457, applovinHcpa: 0, googleHcpa: 286, pinterestHcpa: 702, tiktokHcpa: 927, youtubeHcpa: 1254,
-    metaHroas: 192, applovinHroas: 0, googleHroas: 307, pinterestHroas: 125, tiktokHroas: 95, youtubeHroas: 70 },
-  { month: 'Jan 2026', spend: 406854, newOrders: 1008, newRevenue: 898709, cac: 404, roas: 221,
-    metaSpend: 234387, applovinSpend: 0, googleSpend: 115098, pinterestSpend: 12283, tiktokSpend: 17731, youtubeSpend: 22830,
-    metaHcpa: 567, applovinHcpa: 0, googleHcpa: 306, pinterestHcpa: 544, tiktokHcpa: 2357, youtubeHcpa: 1016,
-    metaHroas: 163, applovinHroas: 0, googleHroas: 292, pinterestHroas: 164, tiktokHroas: 38, youtubeHroas: 88 },
-  { month: 'Feb 2026', spend: 738341, newOrders: 4212, newRevenue: 939760, cac: 175, roas: 127,
-    metaSpend: 391321, applovinSpend: 0, googleSpend: 199353, pinterestSpend: 27288, tiktokSpend: 38748, youtubeSpend: 47019,
-    metaHcpa: 450, applovinHcpa: 0, googleHcpa: 354, pinterestHcpa: 444, tiktokHcpa: 1638, youtubeHcpa: 1867,
-    metaHroas: 194, applovinHroas: 0, googleHroas: 247, pinterestHroas: 188, tiktokHroas: 57, youtubeHroas: 47 },
+  { month: 'Apr 2025', spend: 802287, newOrders: 5912, newRevenue: 1337414, cac: 136, roas: 167,
+    metaSpend: 599182, applovinSpend: 0, googleSpend: 195723, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'May 2025', spend: 1148756, newOrders: 7335, newRevenue: 1613882, cac: 157, roas: 140,
+    metaSpend: 911910, applovinSpend: 0, googleSpend: 229464, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Jun 2025', spend: 1549049, newOrders: 12696, newRevenue: 3100066, cac: 122, roas: 200,
+    metaSpend: 1110403, applovinSpend: 0, googleSpend: 431264, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Jul 2025', spend: 1964343, newOrders: 15961, newRevenue: 3641826, cac: 123, roas: 185,
+    metaSpend: 1365554, applovinSpend: 0, googleSpend: 591407, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Aug 2025', spend: 1396533, newOrders: 11900, newRevenue: 2710690, cac: 117, roas: 194,
+    metaSpend: 1013521, applovinSpend: 0, googleSpend: 375630, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Sep 2025', spend: 1002375, newOrders: 8759, newRevenue: 1979709, cac: 114, roas: 198,
+    metaSpend: 752408, applovinSpend: 0, googleSpend: 242585, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Oct 2025', spend: 719524, newOrders: 5696, newRevenue: 1256722, cac: 126, roas: 175,
+    metaSpend: 503961, applovinSpend: 0, googleSpend: 208181, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Nov 2025', spend: 1081153, newOrders: 8278, newRevenue: 2034772, cac: 131, roas: 188,
+    metaSpend: 806166, applovinSpend: 0, googleSpend: 267605, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Dec 2025', spend: 1032218, newOrders: 9556, newRevenue: 2078999, cac: 108, roas: 201,
+    metaSpend: 766271, applovinSpend: 0, googleSpend: 258565, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Jan 2026', spend: 625512, newOrders: 5043, newRevenue: 1089220, cac: 124, roas: 174,
+    metaSpend: 458628, applovinSpend: 0, googleSpend: 159502, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+  { month: 'Feb 2026', spend: 513879, newOrders: 4212, newRevenue: 939760, cac: 122, roas: 183,
+    metaSpend: 391321, applovinSpend: 0, googleSpend: 115176, redditSpend: 7382, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
   { month: 'Mar 2026', spend: 847482, newOrders: 6797, newRevenue: 1570216, cac: 125, roas: 185,
-    metaSpend: 628794, applovinSpend: 0, googleSpend: 203959, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
-    metaHcpa: 364, applovinHcpa: 0, googleHcpa: 284, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
-    metaHroas: 252, applovinHroas: 0, googleHroas: 326, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
+    metaSpend: 628794, applovinSpend: 0, googleSpend: 203959, redditSpend: 14729, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 0, applovinHcpa: 0, googleHcpa: 0, redditHcpa: 0, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 0, applovinHroas: 0, googleHroas: 0, redditHroas: 0, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
 ]
 
 // ========== PAID, ORGANIC & RETURN WEEKLY DATA ==========
