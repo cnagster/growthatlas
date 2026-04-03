@@ -72,8 +72,18 @@ const metaDailyRaw = [
   { date: '3/31', spend: 19006.90, purchases: 152, impressions: 793756, clicks: 21072 },
 ];
 
+// --- Real per-platform spend totals for March 2026 ---
+// Meta: $628,794.33 (meta_ads_account_summary API)
+// Google Ads: $203,958.97 (google_ads API, costMicros / 1e6)
+// Reddit Ads: $14,728.64 (reddit_ads_account_summary API)
+// TikTok Ads: $0 (no active campaigns)
+// AppLovin: $0 (no active campaigns)
+const TOTAL_NON_META_SPEND_MARCH = 203958.97 + 14728.64; // $218,687.61
+const TOTAL_META_SPEND_MARCH = 628794.33;
+const TOTAL_SPEND_MARCH = TOTAL_META_SPEND_MARCH + TOTAL_NON_META_SPEND_MARCH; // $847,481.94
+const META_SPEND_SHARE = TOTAL_META_SPEND_MARCH / TOTAL_SPEND_MARCH; // ~0.7418
+
 // --- Estimation constants ---
-const META_SPEND_SHARE = 0.53;     // Meta is ~53% of total ad spend based on channel mix
 const NEW_CUSTOMER_RATIO = 0.65;   // Est. 65% of orders are new customers
 const NEW_REVENUE_RATIO = 0.68;    // Est. 68% of revenue from new customers
 const PAID_SESSION_RATIO = 0.82;   // Est. 82% paid traffic
@@ -149,7 +159,7 @@ export const runningTotalsData = (() => {
 export const monthlySummary = {
   january: { totalRevenue: 1217000, targetRevenue: 1400000, pctOfTarget: 86.93, newRevenue: 827560, returnRevenue: 389440, spend: 406763, orders: 6766, sessions: 218258, newCustomers: 4398, aov: 179.89, cac: 92.49, roas: 2.99, cvr: 3.10, paidPct: 82, organicPct: 18 },
   february: { totalRevenue: 1382000.42, targetRevenue: 1500000, pctOfTarget: 92.13, newRevenue: 939760, returnRevenue: 442240, spend: 738341, orders: 6480, sessions: 209032, newCustomers: 4212, aov: 213.27, cac: 175.27, roas: 1.87, cvr: 3.10, paidPct: 82, organicPct: 18 },
-  march: { totalRevenue: 2309140.68, targetRevenue: 2500000, pctOfTarget: 92.37, newRevenue: 1570216, returnRevenue: 738925, spend: 1186404, orders: 10457, sessions: 337323, newCustomers: 6797, aov: 220.84, cac: 174.55, roas: 1.95, cvr: 3.10, paidPct: 82, organicPct: 18 },
+  march: { totalRevenue: 2309140.68, targetRevenue: 2500000, pctOfTarget: 92.37, newRevenue: 1570216, returnRevenue: 738925, spend: 847482, orders: 10457, sessions: 337323, newCustomers: 6797, aov: 220.84, cac: 124.68, roas: 2.73, cvr: 3.10, paidPct: 82, organicPct: 18 },
 };
 
 // --- Computed KPI data for the current month (March) ---
@@ -768,7 +778,7 @@ const monthlyRaw = [
   { month: '2025-12', spend: 395141, newRev: 958381, newCust: 1090, retCust: 862, retRev: 383287, sessions: 613951 },
   { month: '2026-01', spend: 406763, newRev: 827560, newCust: 4398, retCust: 2368, retRev: 389440, sessions: 218258 },
   { month: '2026-02', spend: 738341, newRev: 939760, newCust: 4212, retCust: 2268, retRev: 442240, sessions: 209032 },
-  { month: '2026-03', spend: 1186404, newRev: 1570216, newCust: 6797, retCust: 3660, retRev: 738925, sessions: 337323 },
+  { month: '2026-03', spend: 847482, newRev: 1570216, newCust: 6797, retCust: 3660, retRev: 738925, sessions: 337323 },
 ]
 
 export const monthlyActualsData: MonthlyData[] = monthlyRaw.map(m => {
@@ -1108,12 +1118,11 @@ export const channelKPIs: ChannelKPI[] = [
 ]
 
 export const channelSpendMixData: ChannelSpendMix[] = [
-  { channel: 'Meta', lastWeekDollars: 39260, lastWeekPct: 53, wowPct: 15 },
-  { channel: 'Google Ads', lastWeekDollars: 20078, lastWeekPct: 37, wowPct: 60 },
-  { channel: 'TikTok', lastWeekDollars: 4535, lastWeekPct: 6, wowPct: -7 },
-  { channel: 'YouTube', lastWeekDollars: 3290, lastWeekPct: 4, wowPct: -5 },
-  { channel: 'Pinterest', lastWeekDollars: 2800, lastWeekPct: 4, wowPct: -10 },
-  { channel: 'Bing', lastWeekDollars: 864, lastWeekPct: 7, wowPct: -2 },
+  { channel: 'Meta', lastWeekDollars: 153415, lastWeekPct: 74, wowPct: 15 },
+  { channel: 'Google Ads', lastWeekDollars: 49828, lastWeekPct: 24, wowPct: 60 },
+  { channel: 'Reddit', lastWeekDollars: 3596, lastWeekPct: 2, wowPct: -7 },
+  { channel: 'TikTok', lastWeekDollars: 0, lastWeekPct: 0, wowPct: 0 },
+  { channel: 'AppLovin', lastWeekDollars: 0, lastWeekPct: 0, wowPct: 0 },
 ]
 
 export const channelMetricsData: ChannelMetricsMap = {
@@ -1834,10 +1843,10 @@ export const attributionMonthlyData: AttributionMonthRow[] = [
     metaSpend: 391321, applovinSpend: 0, googleSpend: 199353, pinterestSpend: 27288, tiktokSpend: 38748, youtubeSpend: 47019,
     metaHcpa: 450, applovinHcpa: 0, googleHcpa: 354, pinterestHcpa: 444, tiktokHcpa: 1638, youtubeHcpa: 1867,
     metaHroas: 194, applovinHroas: 0, googleHroas: 247, pinterestHroas: 188, tiktokHroas: 57, youtubeHroas: 47 },
-  { month: 'Mar 2026', spend: 1186404, newOrders: 6797, newRevenue: 1570216, cac: 175, roas: 132,
-    metaSpend: 628794, applovinSpend: 0, googleSpend: 320330, pinterestSpend: 43838, tiktokSpend: 62264, youtubeSpend: 75576,
-    metaHcpa: 364, applovinHcpa: 0, googleHcpa: 284, pinterestHcpa: 409, tiktokHcpa: 0, youtubeHcpa: 1206,
-    metaHroas: 252, applovinHroas: 0, googleHroas: 326, pinterestHroas: 226, tiktokHroas: 0, youtubeHroas: 77 },
+  { month: 'Mar 2026', spend: 847482, newOrders: 6797, newRevenue: 1570216, cac: 125, roas: 185,
+    metaSpend: 628794, applovinSpend: 0, googleSpend: 203959, pinterestSpend: 0, tiktokSpend: 0, youtubeSpend: 0,
+    metaHcpa: 364, applovinHcpa: 0, googleHcpa: 284, pinterestHcpa: 0, tiktokHcpa: 0, youtubeHcpa: 0,
+    metaHroas: 252, applovinHroas: 0, googleHroas: 326, pinterestHroas: 0, tiktokHroas: 0, youtubeHroas: 0 },
 ]
 
 // ========== PAID, ORGANIC & RETURN WEEKLY DATA ==========
