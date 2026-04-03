@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'ORCA - Dashboard Analytics',
+  title: 'Growth Atlas - Dashboard Analytics',
   description: 'Dashboard Analytics Software',
 }
 

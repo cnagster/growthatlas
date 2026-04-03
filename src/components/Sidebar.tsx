@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronLeft, ChevronRight, BarChart3, Briefcase, Radio, Layers, TrendingUp, Zap } from 'lucide-react'
+import { ChevronLeft, ChevronRight, BarChart3, Briefcase, Radio, Layers, TrendingUp } from 'lucide-react'
 import { useState } from 'react'
 
 const navItems = [
@@ -45,7 +45,7 @@ export default function Sidebar({ activePage, onPageChange }: SidebarProps) {
     <div className={`fixed left-0 top-0 h-full bg-sidebar text-white flex flex-col z-50 transition-all duration-200 ${collapsed ? 'w-16' : 'w-48'}`}>
       {/* Logo */}
       <div className="flex items-center justify-between px-4 h-12 border-b border-white/10">
-        {!collapsed && <span className="font-bold text-lg tracking-wide">ORCA</span>}
+        {!collapsed && <span className="font-bold text-lg tracking-wide">GROWTH ATLAS</span>}
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="p-1 rounded hover:bg-sidebar-hover transition-colors"
@@ -106,37 +106,8 @@ export default function Sidebar({ activePage, onPageChange }: SidebarProps) {
           </div>
         ))}
 
-        {/* AI Chat section */}
-        {!collapsed && (
-          <div className="mt-4 px-4">
-            <span className="text-xs text-gray-500 uppercase tracking-wider">AI Chat</span>
-          </div>
-        )}
-        <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:bg-sidebar-hover hover:text-white transition-colors mt-1">
-          <Zap size={18} />
-          {!collapsed && (
-            <>
-              <span>Sonar</span>
-              <span className="text-[10px] bg-teal-chart text-sidebar px-1.5 py-0.5 rounded font-medium">New</span>
-            </>
-          )}
-        </button>
       </nav>
 
-      {/* Footer */}
-      {!collapsed && (
-        <div className="px-4 py-3 border-t border-white/10">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-sidebar-active flex items-center justify-center text-xs font-medium">
-              ML
-            </div>
-            <div className="text-xs">
-              <div className="font-medium">MOD LIGHTING</div>
-              <div className="text-gray-400 truncate text-[10px]">admin@email.com</div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
