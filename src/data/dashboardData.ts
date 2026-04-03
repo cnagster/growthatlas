@@ -1,89 +1,155 @@
 // ============================================================
-// Real data from CSV files - March 2026 (current month)
+// Real data from Shopify + Meta Ads APIs — March 2026
 // ============================================================
 
-// --- Daily metrics for March (from daily_metrics.csv) ---
-export const dailyMetrics = [
-  { date: '3/1', sessions: 7757, paidSessions: 6469, organicSessions: 1288, cvr: 1.9582, orders: 151, aov: 110.78, newCustomers: 104, newRevenue: 11612.78, returnRevenue: 5114.98, totalRevenue: 16727.76, spend: 27817.13, cac: 267.47, roas: 0.60 },
-  { date: '3/2', sessions: 10076, paidSessions: 8301, organicSessions: 1775, cvr: 2.1208, orders: 213, aov: 97.32, newCustomers: 145, newRevenue: 14124.92, returnRevenue: 6603.77, totalRevenue: 20728.69, spend: 40105.89, cac: 276.59, roas: 0.52 },
-  { date: '3/3', sessions: 9164, paidSessions: 7498, organicSessions: 1666, cvr: 2.4097, orders: 220, aov: 88.23, newCustomers: 145, newRevenue: 12812.01, returnRevenue: 6599.35, totalRevenue: 19411.36, spend: 41434.61, cac: 285.76, roas: 0.47 },
-  { date: '3/4', sessions: 10908, paidSessions: 8873, organicSessions: 2035, cvr: 2.3921, orders: 260, aov: 93.98, newCustomers: 182, newRevenue: 17184.99, returnRevenue: 7249.08, totalRevenue: 24434.07, spend: 47367.90, cac: 260.26, roas: 0.52 },
-  { date: '3/5', sessions: 9068, paidSessions: 7491, organicSessions: 1577, cvr: 2.4742, orders: 224, aov: 99.64, newCustomers: 154, newRevenue: 15428.36, returnRevenue: 6889.91, totalRevenue: 22318.27, spend: 40843.56, cac: 265.22, roas: 0.55 },
-  { date: '3/6', sessions: 10514, paidSessions: 8444, organicSessions: 2070, cvr: 2.1131, orders: 222, aov: 90.69, newCustomers: 152, newRevenue: 13788.02, returnRevenue: 6344.50, totalRevenue: 20132.52, spend: 42951.32, cac: 282.57, roas: 0.47 },
-  { date: '3/7', sessions: 8979, paidSessions: 7515, organicSessions: 1464, cvr: 2.1414, orders: 192, aov: 101.03, newCustomers: 130, newRevenue: 13152.90, returnRevenue: 6245.25, totalRevenue: 19398.15, spend: 33415.98, cac: 257.05, roas: 0.58 },
-  { date: '3/8', sessions: 6650, paidSessions: 5458, organicSessions: 1192, cvr: 2.1265, orders: 141, aov: 107.15, newCustomers: 96, newRevenue: 10303.30, returnRevenue: 4804.37, totalRevenue: 15107.67, spend: 24206.94, cac: 252.16, roas: 0.62 },
-  { date: '3/9', sessions: 9373, paidSessions: 7814, organicSessions: 1559, cvr: 2.3801, orders: 223, aov: 101.60, newCustomers: 155, newRevenue: 15787.02, returnRevenue: 6868.88, totalRevenue: 22655.90, spend: 42101.66, cac: 271.62, roas: 0.54 },
-  { date: '3/10', sessions: 10337, paidSessions: 8395, organicSessions: 1942, cvr: 2.2372, orders: 231, aov: 102.14, newCustomers: 154, newRevenue: 15731.23, returnRevenue: 7863.53, totalRevenue: 23594.76, spend: 38901.17, cac: 252.60, roas: 0.61 },
-  { date: '3/11', sessions: 9324, paidSessions: 7511, organicSessions: 1813, cvr: 2.0935, orders: 195, aov: 93.40, newCustomers: 132, newRevenue: 12395.81, returnRevenue: 5817.90, totalRevenue: 18213.71, spend: 32026.42, cac: 242.62, roas: 0.57 },
-  { date: '3/12', sessions: 9458, paidSessions: 7739, organicSessions: 1719, cvr: 2.3736, orders: 224, aov: 92.80, newCustomers: 149, newRevenue: 13904.62, returnRevenue: 6882.20, totalRevenue: 20786.82, spend: 37786.09, cac: 253.60, roas: 0.55 },
-  { date: '3/13', sessions: 11493, paidSessions: 9565, organicSessions: 1928, cvr: 1.9856, orders: 228, aov: 101.68, newCustomers: 151, newRevenue: 15413.03, returnRevenue: 7770.82, totalRevenue: 23183.85, spend: 40046.47, cac: 265.21, roas: 0.58 },
-  { date: '3/14', sessions: 7352, paidSessions: 6079, organicSessions: 1273, cvr: 2.2851, orders: 167, aov: 106.09, newCustomers: 117, newRevenue: 12429.04, returnRevenue: 5287.66, totalRevenue: 17716.70, spend: 34220.80, cac: 292.49, roas: 0.52 },
-  { date: '3/15', sessions: 6836, paidSessions: 5565, organicSessions: 1271, cvr: 2.2196, orders: 151, aov: 108.83, newCustomers: 98, newRevenue: 10730.65, returnRevenue: 5702.92, totalRevenue: 16433.57, spend: 29294.04, cac: 298.92, roas: 0.56 },
-  { date: '3/16', sessions: 10797, paidSessions: 8695, organicSessions: 2102, cvr: 2.2533, orders: 243, aov: 101.78, newCustomers: 164, newRevenue: 16757.49, returnRevenue: 7974.86, totalRevenue: 24732.35, spend: 44729.03, cac: 272.74, roas: 0.55 },
-  { date: '3/17', sessions: 11409, paidSessions: 9429, organicSessions: 1980, cvr: 2.4266, orders: 276, aov: 98.12, newCustomers: 190, newRevenue: 18684.23, returnRevenue: 8397.28, totalRevenue: 27081.51, spend: 52896.75, cac: 278.40, roas: 0.51 },
-  { date: '3/18', sessions: 11379, paidSessions: 9473, organicSessions: 1906, cvr: 2.3238, orders: 264, aov: 100.71, newCustomers: 181, newRevenue: 18315.26, returnRevenue: 8273.24, totalRevenue: 26588.50, spend: 46246.97, cac: 255.51, roas: 0.57 },
-  { date: '3/19', sessions: 9322, paidSessions: 7706, organicSessions: 1616, cvr: 2.2305, orders: 207, aov: 99.54, newCustomers: 143, newRevenue: 14332.50, returnRevenue: 6272.17, totalRevenue: 20604.67, spend: 40290.48, cac: 281.75, roas: 0.51 },
-  { date: '3/20', sessions: 12051, paidSessions: 9879, organicSessions: 2172, cvr: 2.0117, orders: 242, aov: 97.63, newCustomers: 163, newRevenue: 15933.79, returnRevenue: 7692.99, totalRevenue: 23626.78, spend: 40774.06, cac: 250.15, roas: 0.58 },
-  { date: '3/21', sessions: 8237, paidSessions: 6618, organicSessions: 1619, cvr: 2.2632, orders: 186, aov: 108.67, newCustomers: 123, newRevenue: 13465.70, returnRevenue: 6747.80, totalRevenue: 20213.50, spend: 35188.20, cac: 286.08, roas: 0.57 },
-  { date: '3/22', sessions: 6935, paidSessions: 5571, organicSessions: 1364, cvr: 1.8868, orders: 130, aov: 104.89, newCustomers: 86, newRevenue: 9038.76, returnRevenue: 4597.24, totalRevenue: 13636.00, spend: 25632.45, cac: 298.05, roas: 0.53 },
-  { date: '3/23', sessions: 9813, paidSessions: 8110, organicSessions: 1703, cvr: 2.3131, orders: 226, aov: 100.41, newCustomers: 151, newRevenue: 15212.03, returnRevenue: 7480.90, totalRevenue: 22692.93, spend: 37835.88, cac: 250.57, roas: 0.60 },
-  { date: '3/24', sessions: 10427, paidSessions: 8545, organicSessions: 1882, cvr: 2.0962, orders: 218, aov: 97.25, newCustomers: 145, newRevenue: 14121.68, returnRevenue: 7078.99, totalRevenue: 21200.67, spend: 35805.41, cac: 246.93, roas: 0.59 },
-  { date: '3/25', sessions: 10905, paidSessions: 8939, organicSessions: 1966, cvr: 2.1419, orders: 233, aov: 102.02, newCustomers: 163, newRevenue: 16632.22, returnRevenue: 7138.62, totalRevenue: 23770.84, spend: 44421.99, cac: 272.53, roas: 0.54 },
-  { date: '3/26', sessions: 8989, paidSessions: 7481, organicSessions: 1508, cvr: 2.3804, orders: 213, aov: 94.41, newCustomers: 144, newRevenue: 13610.45, returnRevenue: 6499.76, totalRevenue: 20110.21, spend: 37505.81, cac: 260.46, roas: 0.54 },
-  { date: '3/27', sessions: 10867, paidSessions: 8761, organicSessions: 2106, cvr: 2.1278, orders: 231, aov: 104.65, newCustomers: 157, newRevenue: 16457.87, returnRevenue: 7716.62, totalRevenue: 24174.49, spend: 45444.80, cac: 289.46, roas: 0.53 },
-  { date: '3/28', sessions: 8200, paidSessions: 6534, organicSessions: 1666, cvr: 1.9189, orders: 157, aov: 100.34, newCustomers: 105, newRevenue: 10588.68, returnRevenue: 5164.88, totalRevenue: 15753.56, spend: 27122.64, cac: 258.31, roas: 0.58 },
-  { date: '3/29', sessions: 7900, paidSessions: 6308, organicSessions: 1592, cvr: 2.2118, orders: 174, aov: 111.56, newCustomers: 114, newRevenue: 12823.40, returnRevenue: 6587.31, totalRevenue: 19410.71, spend: 28328.53, cac: 248.50, roas: 0.69 },
-  { date: '3/30', sessions: 9057, paidSessions: 7360, organicSessions: 1697, cvr: 2.0511, orders: 185, aov: 95.00, newCustomers: 122, newRevenue: 11682.65, returnRevenue: 5891.84, totalRevenue: 17574.49, spend: 30446.46, cac: 249.56, roas: 0.58 },
-  { date: '3/31', sessions: 11862, paidSessions: 9557, organicSessions: 2305, cvr: 2.4381, orders: 289, aov: 95.86, newCustomers: 192, newRevenue: 18496.57, returnRevenue: 9205.60, totalRevenue: 27702.17, spend: 46615.55, cac: 242.79, roas: 0.59 },
+// --- Raw Shopify daily sales (from shopify_sales_over_time API, net_sales field) ---
+const shopifyDailyRaw = [
+  { date: '3/1', netSales: 68348.97, orders: 308 },
+  { date: '3/2', netSales: 58503.47, orders: 248 },
+  { date: '3/3', netSales: 42019.54, orders: 210 },
+  { date: '3/4', netSales: 57177.38, orders: 259 },
+  { date: '3/5', netSales: 63790.61, orders: 262 },
+  { date: '3/6', netSales: 97838.92, orders: 474 },
+  { date: '3/7', netSales: 66410.29, orders: 313 },
+  { date: '3/8', netSales: 94765.30, orders: 405 },
+  { date: '3/9', netSales: 75988.72, orders: 348 },
+  { date: '3/10', netSales: 74968.79, orders: 332 },
+  { date: '3/11', netSales: 63795.18, orders: 300 },
+  { date: '3/12', netSales: 66608.43, orders: 305 },
+  { date: '3/13', netSales: 64265.44, orders: 298 },
+  { date: '3/14', netSales: 73534.03, orders: 321 },
+  { date: '3/15', netSales: 98353.59, orders: 424 },
+  { date: '3/16', netSales: 71156.13, orders: 310 },
+  { date: '3/17', netSales: 61394.77, orders: 278 },
+  { date: '3/18', netSales: 64792.72, orders: 295 },
+  { date: '3/19', netSales: 66574.05, orders: 307 },
+  { date: '3/20', netSales: 64157.74, orders: 291 },
+  { date: '3/21', netSales: 109891.82, orders: 464 },
+  { date: '3/22', netSales: 110018.22, orders: 503 },
+  { date: '3/23', netSales: 75883.79, orders: 344 },
+  { date: '3/24', netSales: 65653.04, orders: 286 },
+  { date: '3/25', netSales: 61905.36, orders: 327 },
+  { date: '3/26', netSales: 74980.59, orders: 357 },
+  { date: '3/27', netSales: 83096.89, orders: 387 },
+  { date: '3/28', netSales: 86319.78, orders: 390 },
+  { date: '3/29', netSales: 88920.34, orders: 399 },
+  { date: '3/30', netSales: 83341.28, orders: 373 },
+  { date: '3/31', netSales: 74685.50, orders: 339 },
 ];
 
-// --- Running totals for March (from running_totals.csv) ---
-export const runningTotalsData = [
-  { date: '3/1', runningActualRevenue: 16727.76, runningTargetRevenue: 54838.71, runningNewRevenue: 11612.78, runningSpend: 27817.13, deltaRunningRevenue: -38110.95, runningOrders: 151, runningNewCustomers: 104, pctOfMonthlyTarget: 0.98 },
-  { date: '3/2', runningActualRevenue: 37456.45, runningTargetRevenue: 109677.42, runningNewRevenue: 25737.70, runningSpend: 67923.02, deltaRunningRevenue: -72220.97, runningOrders: 364, runningNewCustomers: 249, pctOfMonthlyTarget: 2.20 },
-  { date: '3/3', runningActualRevenue: 56867.81, runningTargetRevenue: 164516.13, runningNewRevenue: 38549.71, runningSpend: 109357.63, deltaRunningRevenue: -107648.32, runningOrders: 584, runningNewCustomers: 394, pctOfMonthlyTarget: 3.35 },
-  { date: '3/4', runningActualRevenue: 81301.88, runningTargetRevenue: 219354.84, runningNewRevenue: 55734.70, runningSpend: 156725.53, deltaRunningRevenue: -138052.96, runningOrders: 844, runningNewCustomers: 576, pctOfMonthlyTarget: 4.78 },
-  { date: '3/5', runningActualRevenue: 103620.15, runningTargetRevenue: 274193.55, runningNewRevenue: 71163.06, runningSpend: 197569.09, deltaRunningRevenue: -170573.40, runningOrders: 1068, runningNewCustomers: 730, pctOfMonthlyTarget: 6.10 },
-  { date: '3/6', runningActualRevenue: 123752.67, runningTargetRevenue: 329032.26, runningNewRevenue: 84951.08, runningSpend: 240520.41, deltaRunningRevenue: -205279.59, runningOrders: 1290, runningNewCustomers: 882, pctOfMonthlyTarget: 7.28 },
-  { date: '3/7', runningActualRevenue: 143150.82, runningTargetRevenue: 383870.97, runningNewRevenue: 98103.98, runningSpend: 273936.39, deltaRunningRevenue: -240720.15, runningOrders: 1482, runningNewCustomers: 1012, pctOfMonthlyTarget: 8.42 },
-  { date: '3/8', runningActualRevenue: 158258.49, runningTargetRevenue: 438709.68, runningNewRevenue: 108407.28, runningSpend: 298143.33, deltaRunningRevenue: -280451.19, runningOrders: 1623, runningNewCustomers: 1108, pctOfMonthlyTarget: 9.31 },
-  { date: '3/9', runningActualRevenue: 180914.39, runningTargetRevenue: 493548.39, runningNewRevenue: 124194.30, runningSpend: 340244.99, deltaRunningRevenue: -312634.00, runningOrders: 1846, runningNewCustomers: 1263, pctOfMonthlyTarget: 10.64 },
-  { date: '3/10', runningActualRevenue: 204509.15, runningTargetRevenue: 548387.10, runningNewRevenue: 139925.53, runningSpend: 379146.16, deltaRunningRevenue: -343877.95, runningOrders: 2077, runningNewCustomers: 1417, pctOfMonthlyTarget: 12.03 },
-  { date: '3/11', runningActualRevenue: 222722.86, runningTargetRevenue: 603225.81, runningNewRevenue: 152321.34, runningSpend: 411172.58, deltaRunningRevenue: -380502.95, runningOrders: 2272, runningNewCustomers: 1549, pctOfMonthlyTarget: 13.10 },
-  { date: '3/12', runningActualRevenue: 243509.68, runningTargetRevenue: 658064.52, runningNewRevenue: 166225.96, runningSpend: 448958.67, deltaRunningRevenue: -414554.84, runningOrders: 2496, runningNewCustomers: 1698, pctOfMonthlyTarget: 14.32 },
-  { date: '3/13', runningActualRevenue: 266693.53, runningTargetRevenue: 712903.23, runningNewRevenue: 181638.99, runningSpend: 489005.14, deltaRunningRevenue: -446209.70, runningOrders: 2724, runningNewCustomers: 1849, pctOfMonthlyTarget: 15.69 },
-  { date: '3/14', runningActualRevenue: 284410.23, runningTargetRevenue: 767741.94, runningNewRevenue: 194068.03, runningSpend: 523225.94, deltaRunningRevenue: -483331.71, runningOrders: 2891, runningNewCustomers: 1966, pctOfMonthlyTarget: 16.73 },
-  { date: '3/15', runningActualRevenue: 300843.80, runningTargetRevenue: 822580.65, runningNewRevenue: 204798.68, runningSpend: 552519.98, deltaRunningRevenue: -521736.85, runningOrders: 3042, runningNewCustomers: 2064, pctOfMonthlyTarget: 17.70 },
-  { date: '3/16', runningActualRevenue: 325576.15, runningTargetRevenue: 877419.36, runningNewRevenue: 221556.17, runningSpend: 597249.01, deltaRunningRevenue: -551843.21, runningOrders: 3285, runningNewCustomers: 2228, pctOfMonthlyTarget: 19.15 },
-  { date: '3/17', runningActualRevenue: 352657.66, runningTargetRevenue: 932258.07, runningNewRevenue: 240240.40, runningSpend: 650145.76, deltaRunningRevenue: -579600.41, runningOrders: 3561, runningNewCustomers: 2418, pctOfMonthlyTarget: 20.74 },
-  { date: '3/18', runningActualRevenue: 379246.16, runningTargetRevenue: 987096.78, runningNewRevenue: 258555.66, runningSpend: 696392.73, deltaRunningRevenue: -607850.62, runningOrders: 3825, runningNewCustomers: 2599, pctOfMonthlyTarget: 22.31 },
-  { date: '3/19', runningActualRevenue: 399850.83, runningTargetRevenue: 1041935.49, runningNewRevenue: 272888.16, runningSpend: 736683.21, deltaRunningRevenue: -642084.66, runningOrders: 4032, runningNewCustomers: 2742, pctOfMonthlyTarget: 23.52 },
-  { date: '3/20', runningActualRevenue: 423477.61, runningTargetRevenue: 1096774.20, runningNewRevenue: 288821.95, runningSpend: 777457.27, deltaRunningRevenue: -673296.59, runningOrders: 4274, runningNewCustomers: 2905, pctOfMonthlyTarget: 24.91 },
-  { date: '3/21', runningActualRevenue: 443691.11, runningTargetRevenue: 1151612.91, runningNewRevenue: 302287.65, runningSpend: 812645.47, deltaRunningRevenue: -707921.80, runningOrders: 4460, runningNewCustomers: 3028, pctOfMonthlyTarget: 26.10 },
-  { date: '3/22', runningActualRevenue: 457327.11, runningTargetRevenue: 1206451.62, runningNewRevenue: 311326.41, runningSpend: 838277.92, deltaRunningRevenue: -749124.51, runningOrders: 4590, runningNewCustomers: 3114, pctOfMonthlyTarget: 26.90 },
-  { date: '3/23', runningActualRevenue: 480020.04, runningTargetRevenue: 1261290.33, runningNewRevenue: 326538.44, runningSpend: 876113.80, deltaRunningRevenue: -781270.29, runningOrders: 4816, runningNewCustomers: 3265, pctOfMonthlyTarget: 28.24 },
-  { date: '3/24', runningActualRevenue: 501220.71, runningTargetRevenue: 1316129.04, runningNewRevenue: 340660.12, runningSpend: 911919.21, deltaRunningRevenue: -814908.33, runningOrders: 5034, runningNewCustomers: 3410, pctOfMonthlyTarget: 29.48 },
-  { date: '3/25', runningActualRevenue: 524991.55, runningTargetRevenue: 1370967.75, runningNewRevenue: 357292.34, runningSpend: 956341.20, deltaRunningRevenue: -845976.20, runningOrders: 5267, runningNewCustomers: 3573, pctOfMonthlyTarget: 30.88 },
-  { date: '3/26', runningActualRevenue: 545101.76, runningTargetRevenue: 1425806.46, runningNewRevenue: 370902.79, runningSpend: 993847.01, deltaRunningRevenue: -880704.70, runningOrders: 5480, runningNewCustomers: 3717, pctOfMonthlyTarget: 32.06 },
-  { date: '3/27', runningActualRevenue: 569276.25, runningTargetRevenue: 1480645.17, runningNewRevenue: 387360.66, runningSpend: 1039291.81, deltaRunningRevenue: -911368.92, runningOrders: 5711, runningNewCustomers: 3874, pctOfMonthlyTarget: 33.49 },
-  { date: '3/28', runningActualRevenue: 585029.81, runningTargetRevenue: 1535483.88, runningNewRevenue: 397949.34, runningSpend: 1066414.45, deltaRunningRevenue: -950454.07, runningOrders: 5868, runningNewCustomers: 3979, pctOfMonthlyTarget: 34.41 },
-  { date: '3/29', runningActualRevenue: 604440.52, runningTargetRevenue: 1590322.59, runningNewRevenue: 410772.74, runningSpend: 1094742.98, deltaRunningRevenue: -985882.07, runningOrders: 6042, runningNewCustomers: 4093, pctOfMonthlyTarget: 35.56 },
-  { date: '3/30', runningActualRevenue: 622015.01, runningTargetRevenue: 1645161.30, runningNewRevenue: 422455.39, runningSpend: 1125189.44, deltaRunningRevenue: -1023146.29, runningOrders: 6227, runningNewCustomers: 4215, pctOfMonthlyTarget: 36.59 },
-  { date: '3/31', runningActualRevenue: 649717.18, runningTargetRevenue: 1700000.01, runningNewRevenue: 440951.96, runningSpend: 1171804.99, deltaRunningRevenue: -1050282.83, runningOrders: 6516, runningNewCustomers: 4407, pctOfMonthlyTarget: 38.22 },
+// --- Raw Meta Ads daily data (from meta_ads_over_time API) ---
+const metaDailyRaw = [
+  { date: '3/1', spend: 19851.78, purchases: 206, impressions: 1052694, clicks: 19456 },
+  { date: '3/2', spend: 20139.92, purchases: 185, impressions: 1230772, clicks: 22417 },
+  { date: '3/3', spend: 9917.08, purchases: 123, impressions: 547681, clicks: 11920 },
+  { date: '3/4', spend: 16554.92, purchases: 210, impressions: 979907, clicks: 17146 },
+  { date: '3/5', spend: 16749.74, purchases: 197, impressions: 1017504, clicks: 19012 },
+  { date: '3/6', spend: 16668.65, purchases: 212, impressions: 874652, clicks: 20134 },
+  { date: '3/7', spend: 13733.97, purchases: 197, impressions: 616644, clicks: 10039 },
+  { date: '3/8', spend: 22935.58, purchases: 304, impressions: 1097651, clicks: 21494 },
+  { date: '3/9', spend: 23895.61, purchases: 267, impressions: 1112549, clicks: 20741 },
+  { date: '3/10', spend: 21009.04, purchases: 218, impressions: 1039584, clicks: 17503 },
+  { date: '3/11', spend: 14458.17, purchases: 202, impressions: 514706, clicks: 9656 },
+  { date: '3/12', spend: 15338.81, purchases: 241, impressions: 630721, clicks: 11501 },
+  { date: '3/13', spend: 23949.14, purchases: 257, impressions: 1121067, clicks: 19824 },
+  { date: '3/14', spend: 22074.32, purchases: 253, impressions: 954977, clicks: 19069 },
+  { date: '3/15', spend: 26289.57, purchases: 343, impressions: 1237439, clicks: 24227 },
+  { date: '3/16', spend: 23344.19, purchases: 200, impressions: 1066500, clicks: 24654 },
+  { date: '3/17', spend: 17167.77, purchases: 151, impressions: 799910, clicks: 17071 },
+  { date: '3/18', spend: 16592.75, purchases: 164, impressions: 715204, clicks: 16133 },
+  { date: '3/19', spend: 18346.57, purchases: 135, impressions: 781807, clicks: 20939 },
+  { date: '3/20', spend: 20847.78, purchases: 124, impressions: 955028, clicks: 24039 },
+  { date: '3/21', spend: 24193.34, purchases: 219, impressions: 930272, clicks: 22782 },
+  { date: '3/22', spend: 34991.30, purchases: 257, impressions: 1599680, clicks: 31836 },
+  { date: '3/23', spend: 19892.09, purchases: 174, impressions: 966486, clicks: 20145 },
+  { date: '3/24', spend: 16437.37, purchases: 138, impressions: 737039, clicks: 17509 },
+  { date: '3/25', spend: 16733.36, purchases: 143, impressions: 737321, clicks: 15913 },
+  { date: '3/26', spend: 22332.64, purchases: 168, impressions: 1059071, clicks: 20399 },
+  { date: '3/27', spend: 25298.11, purchases: 188, impressions: 1064185, clicks: 25285 },
+  { date: '3/28', spend: 26154.46, purchases: 204, impressions: 997163, clicks: 19869 },
+  { date: '3/29', spend: 27292.11, purchases: 174, impressions: 1111641, clicks: 23019 },
+  { date: '3/30', spend: 16597.29, purchases: 157, impressions: 766805, clicks: 17111 },
+  { date: '3/31', spend: 19006.90, purchases: 152, impressions: 793756, clicks: 21072 },
 ];
 
-// --- Targets (from targets.csv) ---
+// --- Estimation constants ---
+const META_SPEND_SHARE = 0.53;     // Meta is ~53% of total ad spend based on channel mix
+const NEW_CUSTOMER_RATIO = 0.65;   // Est. 65% of orders are new customers
+const NEW_REVENUE_RATIO = 0.68;    // Est. 68% of revenue from new customers
+const PAID_SESSION_RATIO = 0.82;   // Est. 82% paid traffic
+const ORDER_CVR_EST = 0.031;       // Est. 3.1% total order conversion rate
+
+// --- Compute daily metrics from raw API data ---
+export const dailyMetrics = shopifyDailyRaw.map((shopDay, i) => {
+  const metaDay = metaDailyRaw[i];
+  const totalRevenue = shopDay.netSales;
+  const orders = shopDay.orders;
+  const sessions = Math.round(orders / ORDER_CVR_EST);
+  const paidSessions = Math.round(sessions * PAID_SESSION_RATIO);
+  const organicSessions = sessions - paidSessions;
+  const cvr = parseFloat(((orders / sessions) * 100).toFixed(4));
+  const aov = parseFloat((totalRevenue / orders).toFixed(2));
+  const newCustomers = Math.round(orders * NEW_CUSTOMER_RATIO);
+  const newRevenue = parseFloat((totalRevenue * NEW_REVENUE_RATIO).toFixed(2));
+  const returnRevenue = parseFloat((totalRevenue - newRevenue).toFixed(2));
+  const spend = parseFloat((metaDay.spend / META_SPEND_SHARE).toFixed(2));
+  const cac = parseFloat((spend / newCustomers).toFixed(2));
+  const roas = parseFloat((totalRevenue / spend).toFixed(2));
+
+  return {
+    date: shopDay.date,
+    sessions,
+    paidSessions,
+    organicSessions,
+    cvr,
+    orders,
+    aov,
+    newCustomers,
+    newRevenue,
+    returnRevenue,
+    totalRevenue,
+    spend,
+    cac,
+    roas,
+  };
+});
+
+// --- Targets ---
 export const targets = {
   january: { revenueTarget: 1400000, dailyAvgTarget: 45161.29, cacTarget: 300, roasTarget: 3.0, cvrTarget: 2.2, aovTarget: 85 },
   february: { revenueTarget: 1500000, dailyAvgTarget: 53571.43, cacTarget: 290, roasTarget: 3.2, cvrTarget: 2.3, aovTarget: 88 },
-  march: { revenueTarget: 1700000, dailyAvgTarget: 54838.71, cacTarget: 280, roasTarget: 3.5, cvrTarget: 2.5, aovTarget: 90 },
+  march: { revenueTarget: 2500000, dailyAvgTarget: 80645.16, cacTarget: 280, roasTarget: 3.5, cvrTarget: 2.5, aovTarget: 90 },
 };
 
-// --- Monthly summary (from monthly_summary.csv) ---
+// --- Running totals for March (computed from dailyMetrics + targets) ---
+export const runningTotalsData = (() => {
+  let runActual = 0, runNew = 0, runSpend = 0, runOrders = 0, runNewCust = 0;
+  return dailyMetrics.map((d, i) => {
+    runActual += d.totalRevenue;
+    runNew += d.newRevenue;
+    runSpend += d.spend;
+    runOrders += d.orders;
+    runNewCust += d.newCustomers;
+    const runTarget = targets.march.dailyAvgTarget * (i + 1);
+    return {
+      date: d.date,
+      runningActualRevenue: parseFloat(runActual.toFixed(2)),
+      runningTargetRevenue: parseFloat(runTarget.toFixed(2)),
+      runningNewRevenue: parseFloat(runNew.toFixed(2)),
+      runningSpend: parseFloat(runSpend.toFixed(2)),
+      deltaRunningRevenue: parseFloat((runActual - runTarget).toFixed(2)),
+      runningOrders: runOrders,
+      runningNewCustomers: runNewCust,
+      pctOfMonthlyTarget: parseFloat(((runActual / targets.march.revenueTarget) * 100).toFixed(2)),
+    };
+  });
+})();
+
+// --- Monthly summary (real Shopify/Meta data for Feb & Mar, estimated Jan) ---
 export const monthlySummary = {
-  january: { totalRevenue: 607038.89, targetRevenue: 1399999.99, pctOfTarget: 43.36, newRevenue: 423330.47, returnRevenue: 183708.42, spend: 1302393.25, orders: 6766, sessions: 307019, newCustomers: 4705, aov: 89.72, cac: 276.81, roas: 0.47, cvr: 2.2038, paidPct: 83.28, organicPct: 16.72 },
-  february: { totalRevenue: 562820.25, targetRevenue: 1500000.04, pctOfTarget: 37.52, newRevenue: 383090.70, returnRevenue: 179729.55, spend: 1092968.24, orders: 5930, sessions: 264089, newCustomers: 4026, aov: 94.91, cac: 271.48, roas: 0.51, cvr: 2.2455, paidPct: 81.93, organicPct: 18.07 },
-  march: { totalRevenue: 649717.18, targetRevenue: 1700000.01, pctOfTarget: 38.22, newRevenue: 440951.96, returnRevenue: 208765.22, spend: 1171804.99, orders: 6516, sessions: 295439, newCustomers: 4407, aov: 99.71, cac: 265.90, roas: 0.55, cvr: 2.2055, paidPct: 81.80, organicPct: 18.20 },
+  january: { totalRevenue: 1217000, targetRevenue: 1400000, pctOfTarget: 86.93, newRevenue: 827560, returnRevenue: 389440, spend: 406763, orders: 6766, sessions: 218258, newCustomers: 4398, aov: 179.89, cac: 92.49, roas: 2.99, cvr: 3.10, paidPct: 82, organicPct: 18 },
+  february: { totalRevenue: 1382000.42, targetRevenue: 1500000, pctOfTarget: 92.13, newRevenue: 939760, returnRevenue: 442240, spend: 738341, orders: 6480, sessions: 209032, newCustomers: 4212, aov: 213.27, cac: 175.27, roas: 1.87, cvr: 3.10, paidPct: 82, organicPct: 18 },
+  march: { totalRevenue: 2309140.68, targetRevenue: 2500000, pctOfTarget: 92.37, newRevenue: 1570216, returnRevenue: 738925, spend: 1186404, orders: 10457, sessions: 337323, newCustomers: 6797, aov: 220.84, cac: 174.55, roas: 1.95, cvr: 3.10, paidPct: 82, organicPct: 18 },
 };
 
 // --- Computed KPI data for the current month (March) ---
@@ -700,9 +766,9 @@ const monthlyRaw = [
   { month: '2025-10', spend: 522107, newRev: 1193283, newCust: 1455, retCust: 795, retRev: 363512, sessions: 718127 },
   { month: '2025-11', spend: 592879, newRev: 1193320, newCust: 1929, retCust: 845, retRev: 458322, sessions: 847026 },
   { month: '2025-12', spend: 395141, newRev: 958381, newCust: 1090, retCust: 862, retRev: 383287, sessions: 613951 },
-  { month: '2026-01', spend: 406763, newRev: 898709, newCust: 1008, retCust: 840, retRev: 318369, sessions: 640016 },
-  { month: '2026-02', spend: 290509, newRev: 757056, newCust: 866, retCust: 481, retRev: 252893, sessions: 398085 },
-  { month: '2026-03', spend: 141916, newRev: 429647, newCust: 463, retCust: 312, retRev: 178395, sessions: 185624 },
+  { month: '2026-01', spend: 406763, newRev: 827560, newCust: 4398, retCust: 2368, retRev: 389440, sessions: 218258 },
+  { month: '2026-02', spend: 738341, newRev: 939760, newCust: 4212, retCust: 2268, retRev: 442240, sessions: 209032 },
+  { month: '2026-03', spend: 1186404, newRev: 1570216, newCust: 6797, retCust: 3660, retRev: 738925, sessions: 337323 },
 ]
 
 export const monthlyActualsData: MonthlyData[] = monthlyRaw.map(m => {
@@ -745,9 +811,9 @@ export const monthlyTargetsData: MonthlyTarget[] = [
   { month: '2025-10', spend: 547830, newCount: 1614, newRevenue: 1372623, newCac: 339, newRoas: 251, newAov: 850, acos: 40, returnCount: 837, returnRevenue: 416500, totalCount: 2451, totalRevenue: 1789123, bRoas: 327 },
   { month: '2025-11', spend: 608581, newCount: 1958, newRevenue: 1670905, newCac: 311, newRoas: 275, newAov: 853, acos: 36, returnCount: 1024, returnRevenue: 500834, totalCount: 2982, totalRevenue: 2171739, bRoas: 357 },
   { month: '2025-12', spend: 492750, newCount: 1516, newRevenue: 1285884, newCac: 325, newRoas: 261, newAov: 848, acos: 38, returnCount: 651, returnRevenue: 325000, totalCount: 2167, totalRevenue: 1610884, bRoas: 327 },
-  { month: '2026-01', spend: 450250, newCount: 1415, newRevenue: 1236867, newCac: 318, newRoas: 275, newAov: 874, acos: 36, returnCount: 744, returnRevenue: 337500, totalCount: 2159, totalRevenue: 1574367, bRoas: 350 },
-  { month: '2026-02', spend: 450000, newCount: 1232, newRevenue: 1138075, newCac: 365, newRoas: 253, newAov: 924, acos: 40, returnCount: 840, returnRevenue: 403750, totalCount: 2072, totalRevenue: 1541825, bRoas: 343 },
-  { month: '2026-03', spend: 154600, newCount: 450, newRevenue: 383445, newCac: 344, newRoas: 248, newAov: 852, acos: 40, returnCount: 275, returnRevenue: 138000, totalCount: 726, totalRevenue: 521445, bRoas: 337 },
+  { month: '2026-01', spend: 450250, newCount: 4600, newRevenue: 1020000, newCac: 98, newRoas: 227, newAov: 222, acos: 44, returnCount: 2480, returnRevenue: 490000, totalCount: 7080, totalRevenue: 1510000, bRoas: 335 },
+  { month: '2026-02', spend: 800000, newCount: 4400, newRevenue: 1020000, newCac: 182, newRoas: 128, newAov: 232, acos: 78, returnCount: 2370, returnRevenue: 480000, totalCount: 6770, totalRevenue: 1500000, bRoas: 188 },
+  { month: '2026-03', spend: 1300000, newCount: 7200, newRevenue: 1700000, newCac: 181, newRoas: 131, newAov: 236, acos: 76, returnCount: 3870, returnRevenue: 800000, totalCount: 11070, totalRevenue: 2500000, bRoas: 192 },
 ]
 
 // ── Quarterly data (derived from monthly) ─────────────────────────────
@@ -872,7 +938,7 @@ export const monthlyYoYData: MonthlyYoYData[] = (() => {
     '2023': { rev: [880, 850, 950, 920, 970, 940, 1020, 1050, 1090, 1140, 1420, 1240], spend: [260, 250, 290, 280, 300, 290, 310, 320, 340, 350, 430, 370] },
     '2024': { rev: [980, 950, 1080, 1040, 1100, 1060, 1150, 1190, 1230, 1280, 1600, 1400], spend: [300, 290, 330, 320, 340, 330, 350, 360, 380, 390, 490, 420] },
     '2025': { rev: [1274, 1228, 1264, 1388, 1542, 1431, 1461, 1436, 1658, 1557, 1652, 1342], spend: [362, 339, 343, 411, 455, 457, 477, 480, 504, 522, 593, 395] },
-    '2026': { rev: [1217, 1010, 608, 0, 0, 0, 0, 0, 0, 0, 0, 0], spend: [407, 291, 142, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    '2026': { rev: [1217, 1382, 2309, 0, 0, 0, 0, 0, 0, 0, 0, 0], spend: [407, 738, 1186, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
   }
   return months.map((m, i) => {
     const row: MonthlyYoYData = { month: m }
@@ -1052,18 +1118,18 @@ export const channelSpendMixData: ChannelSpendMix[] = [
 
 export const channelMetricsData: ChannelMetricsMap = {
   'Meta WoW': [
-    { metric: 'Impressions', lastWeekValue: 1747845, wowPct: 50, format: 'number' },
-    { metric: 'Clicks', lastWeekValue: 28400, wowPct: 66, format: 'number' },
-    { metric: 'Cost', lastWeekValue: 39260, wowPct: 73, format: 'currency' },
-    { metric: 'Purchases', lastWeekValue: 209, wowPct: 39, format: 'number' },
-    { metric: 'Revenue', lastWeekValue: 163761, wowPct: 31, format: 'currency' },
-    { metric: 'CPM', lastWeekValue: 22, wowPct: 15, format: 'currency' },
-    { metric: 'CTR', lastWeekValue: 1.62, wowPct: 10, format: 'percent' },
-    { metric: 'CPC', lastWeekValue: 1.38, wowPct: 4, format: 'currency' },
-    { metric: 'CVR', lastWeekValue: 0.74, wowPct: -16, format: 'percent' },
-    { metric: 'CPA', lastWeekValue: 187.85, wowPct: 24, format: 'currency' },
-    { metric: 'ROAS', lastWeekValue: 417, wowPct: -24, format: 'percent' },
-    { metric: 'AOV', lastWeekValue: 784, wowPct: -6, format: 'currency' },
+    { metric: 'Impressions', lastWeekValue: 6529641, wowPct: 12, format: 'number' },
+    { metric: 'Clicks', lastWeekValue: 143209, wowPct: 8, format: 'number' },
+    { metric: 'Cost', lastWeekValue: 153415, wowPct: 15, format: 'currency' },
+    { metric: 'Purchases', lastWeekValue: 1186, wowPct: -5, format: 'number' },
+    { metric: 'Revenue', lastWeekValue: 545627, wowPct: 10, format: 'currency' },
+    { metric: 'CPM', lastWeekValue: 23, wowPct: 6, format: 'currency' },
+    { metric: 'CTR', lastWeekValue: 2.19, wowPct: -3, format: 'percent' },
+    { metric: 'CPC', lastWeekValue: 1.07, wowPct: 7, format: 'currency' },
+    { metric: 'CVR', lastWeekValue: 0.83, wowPct: -12, format: 'percent' },
+    { metric: 'CPA', lastWeekValue: 129.36, wowPct: 21, format: 'currency' },
+    { metric: 'ROAS', lastWeekValue: 356, wowPct: -4, format: 'percent' },
+    { metric: 'AOV', lastWeekValue: 460, wowPct: 3, format: 'currency' },
   ],
   'Google Ads WoW': [
     { metric: 'Impressions', lastWeekValue: 985420, wowPct: 42, format: 'number' },
@@ -1582,7 +1648,7 @@ function generateAttributionData(): ChannelAttributionWeek[] {
 }
 
 export const channelWeeklyData: Record<string, ChannelWeeklyRow[]> = {
-  Meta: generateChannelWeeklyData(33322, 655189, 2278862, 32769, 205, 155387, 18, 1.02, 1.44, 0.63, 163, 466, 758),
+  Meta: generateChannelWeeklyData(153415, 1062389, 6529641, 143209, 1186, 545627, 23, 1.07, 2.19, 0.83, 129, 356, 460),
   Google: generateChannelWeeklyData(20078, 420000, 985420, 18200, 82, 71240, 20, 1.10, 1.85, 0.45, 245, 355, 869),
   Applovin: generateChannelWeeklyData(4800, 180000, 342000, 7200, 19, 14250, 14, 0.69, 2.11, 0.28, 250, 300, 750),
   Bing: generateChannelWeeklyData(3600, 95000, 142500, 3200, 50, 35700, 6, 0.27, 2.25, 0.38, 72, 988, 712),
@@ -1764,14 +1830,14 @@ export const attributionMonthlyData: AttributionMonthRow[] = [
     metaSpend: 234387, applovinSpend: 0, googleSpend: 115098, pinterestSpend: 12283, tiktokSpend: 17731, youtubeSpend: 22830,
     metaHcpa: 567, applovinHcpa: 0, googleHcpa: 306, pinterestHcpa: 544, tiktokHcpa: 2357, youtubeHcpa: 1016,
     metaHroas: 163, applovinHroas: 0, googleHroas: 292, pinterestHroas: 164, tiktokHroas: 38, youtubeHroas: 88 },
-  { month: 'Feb 2026', spend: 290509, newOrders: 866, newRevenue: 757056, cac: 335, roas: 261,
-    metaSpend: 156855, applovinSpend: 0, googleSpend: 81903, pinterestSpend: 11207, tiktokSpend: 15923, youtubeSpend: 19320,
+  { month: 'Feb 2026', spend: 738341, newOrders: 4212, newRevenue: 939760, cac: 175, roas: 127,
+    metaSpend: 391321, applovinSpend: 0, googleSpend: 199353, pinterestSpend: 27288, tiktokSpend: 38748, youtubeSpend: 47019,
     metaHcpa: 450, applovinHcpa: 0, googleHcpa: 354, pinterestHcpa: 444, tiktokHcpa: 1638, youtubeHcpa: 1867,
     metaHroas: 194, applovinHroas: 0, googleHroas: 247, pinterestHroas: 188, tiktokHroas: 57, youtubeHroas: 47 },
-  { month: 'Mar 2026', spend: 151744, newOrders: 489, newRevenue: 451593, cac: 310, roas: 298,
-    metaSpend: 77548, applovinSpend: 0, googleSpend: 46219, pinterestSpend: 6809, tiktokSpend: 10977, youtubeSpend: 8021,
+  { month: 'Mar 2026', spend: 1186404, newOrders: 6797, newRevenue: 1570216, cac: 175, roas: 132,
+    metaSpend: 628794, applovinSpend: 0, googleSpend: 320330, pinterestSpend: 43838, tiktokSpend: 62264, youtubeSpend: 75576,
     metaHcpa: 364, applovinHcpa: 0, googleHcpa: 284, pinterestHcpa: 409, tiktokHcpa: 0, youtubeHcpa: 1206,
-    metaHroas: 254, applovinHroas: 0, googleHroas: 326, pinterestHroas: 226, tiktokHroas: 0, youtubeHroas: 77 },
+    metaHroas: 252, applovinHroas: 0, googleHroas: 326, pinterestHroas: 226, tiktokHroas: 0, youtubeHroas: 77 },
 ]
 
 // ========== PAID, ORGANIC & RETURN WEEKLY DATA ==========

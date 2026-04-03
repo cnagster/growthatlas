@@ -70,7 +70,7 @@ export default function HourlyRevenueChart({ runningTotal, allCustomers }: Hourl
             wrapperStyle={{ fontSize: 10, paddingTop: 4, cursor: 'pointer' }}
             iconType="circle"
             iconSize={6}
-            onClick={handleLegendClick}
+            onClick={handleLegendClick as any}
             formatter={(value, entry) => (
               <span style={{ color: hidden[entry.dataKey as string] ? '#ccc' : '#666', textDecoration: hidden[entry.dataKey as string] ? 'line-through' : 'none' }}>
                 {value}

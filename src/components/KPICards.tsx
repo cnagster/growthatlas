@@ -103,7 +103,7 @@ export default function KPICards({ dateRange }: { dateRange: DateRange }) {
             label={item.label}
             value={item.value}
             change={item.change}
-            suffix={item.suffix}
+            suffix={'suffix' in item ? item.suffix : undefined}
           />
         )
       })}
