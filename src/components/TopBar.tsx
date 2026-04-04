@@ -1,10 +1,11 @@
 'use client'
 
-import { Calendar } from 'lucide-react'
+import { Calendar, RefreshCw } from 'lucide-react'
 import { ChevronDown, Save } from 'lucide-react'
-import { monthlySummary, runningTotalsData, todayEstimatedNewRev, todayEstimatedAllRev } from '@/data/dashboardData'
+import { monthlySummary, runningTotalsData, todayEstimatedNewRev, todayEstimatedAllRev, DATA_LAST_UPDATED } from '@/data/dashboardData'
 import type { DateRange } from '@/data/dashboardData'
 import DateRangePicker from './DateRangePicker'
+import { useState, useCallback } from 'react'
 
 interface TopBarProps {
   activeTab: 'monthly' | 'hourly'
@@ -35,6 +36,21 @@ export default function TopBar({
   const finalRevenue = Math.round(currentRevenue)
   const prevMonthRevenue = monthlySummary.february.totalRevenue
   const revenueChange = Math.round((finalRevenue - prevMonthRevenue) / prevMonthRevenue * 100)
+
+  // Data freshness
+  const [refreshing, setRefreshing] = useState(false)
+  const lastUpdated = new Date(DATA_LAST_UPDATED)
+  const lastUpdatedStr = lastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true)
+    try {
+      await fetch('/api/refresh', { method: 'POST' })
+    } catch {
+      // Refresh is a placeholder — data is updated by Claude
+    } finally {
+      setTimeout(() => setRefreshing(false), 1000)
+    }
+  }, [])
 
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-cream border-b border-cream-dark">
@@ -129,6 +145,18 @@ export default function TopBar({
       </div>
 
       <div className="flex items-center gap-4">
+        {/* Data freshness indicator */}
+        <div className="flex items-center gap-1.5 text-[10px] text-gray-400 border-r border-cream-dark pr-3 mr-1">
+          <span>Updated {lastUpdatedStr}</span>
+          <button
+            onClick={handleRefresh}
+            className="p-0.5 hover:text-gray-600 transition-colors"
+            title="Data is refreshed by asking Claude to update. Click to ping refresh endpoint."
+          >
+            <RefreshCw size={10} className={refreshing ? 'animate-spin' : ''} />
+          </button>
+        </div>
+
         {activeTab === 'monthly' ? (
           <>
             {/* Running toggle */}

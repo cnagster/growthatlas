@@ -3,6 +3,15 @@
 // March 2026 — all spend figures are real API data
 // ============================================================
 
+// Data freshness metadata — updated each time data is refreshed via Claude
+export const DATA_LAST_UPDATED = '2026-04-04T08:00:00Z';
+export const DATA_COVERAGE = {
+  shopify: { from: '2022-01-01', to: '2026-03-31' },
+  googleAds: { from: '2022-01-01', to: '2026-03-31' },
+  metaAds: { from: '2024-02-23', to: '2026-03-31' },
+  redditAds: { from: '2025-07-14', to: '2026-03-31' },
+};
+
 // --- Raw Shopify daily net sales (shopify_sales_over_time API) ---
 const shopifyDailyRaw = [
   { date: '3/1', netSales: 68348.97, orders: 308 },
