@@ -15,18 +15,18 @@ const MONTH_LABEL = 'March 2026'
 const START_DAY_OF_WEEK = 0
 const DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
-// Last day with data
-const TODAY = 31
+// Last day with data (March 2026 is complete)
+const LAST_DATA_DAY = 31
 
 // Preset filters — ranges are [startDay, endDay] within March
 const presets: { label: string; range: DateRange | null }[] = [
-  { label: 'Yesterday', range: [TODAY - 1, TODAY - 1] },
-  { label: 'Last 7 Days', range: [TODAY - 6, TODAY] },
-  { label: 'Last 14 Days', range: [TODAY - 13, TODAY] },
-  { label: 'Last 30 Days', range: [1, TODAY] },
+  { label: 'Yesterday', range: [LAST_DATA_DAY - 1, LAST_DATA_DAY - 1] },
+  { label: 'Last 7 Days', range: [LAST_DATA_DAY - 6, LAST_DATA_DAY] },
+  { label: 'Last 14 Days', range: [LAST_DATA_DAY - 13, LAST_DATA_DAY] },
+  { label: 'Last 30 Days', range: [1, LAST_DATA_DAY] },
   { label: 'Last Week', range: [22, 28] }, // Sun Mar 22 – Sat Mar 28
-  { label: 'Week to Date', range: [29, TODAY] }, // Sun Mar 29 – today
-  { label: 'Month to Date', range: [1, TODAY] },
+  { label: 'Week to Date', range: [29, LAST_DATA_DAY] }, // Sun Mar 29 – today
+  { label: 'Month to Date', range: [1, LAST_DATA_DAY] },
   { label: 'Full Month', range: [1, DAYS_IN_MARCH] },
   { label: 'First Half', range: [1, 15] },
   { label: 'Second Half', range: [16, DAYS_IN_MARCH] },
@@ -184,7 +184,7 @@ export default function DateRangePicker({ dateRange, onDateRangeChange }: DateRa
                 const inRange = isInRange(day)
                 const start = isStart(day)
                 const end = isEnd(day)
-                const isToday = day === TODAY
+                const isToday = day === LAST_DATA_DAY
                 return (
                   <button
                     key={day}

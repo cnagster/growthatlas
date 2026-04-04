@@ -17,7 +17,7 @@ function getSeries(allCustomers: boolean) {
   const avgLabel = allCustomers ? 'L7D Avg Total Revenue' : 'L7D Avg New Revenue'
   const costLabel = allCustomers ? 'CPA' : 'CAC'
   return [
-    { key: 'todayNewRevenue', name: `Today's ${revLabel}`, type: 'area' as const, fill: '#d4a373', fillOpacity: 0.3, stroke: '#d4a373', strokeWidth: 2, axis: 'left' },
+    { key: 'todayNewRevenue', name: `Mar 31 ${revLabel}`, type: 'area' as const, fill: '#d4a373', fillOpacity: 0.3, stroke: '#d4a373', strokeWidth: 2, axis: 'left' },
     { key: 'l7dAvgNewRevenue', name: avgLabel, type: 'line' as const, stroke: '#e07a5f', strokeWidth: 1.5, dash: '4 4', axis: 'left' },
     { key: 'metaSpend', name: 'Meta Spend', type: 'line' as const, stroke: '#2d6a4f', strokeWidth: 1.5, dot: true, axis: 'left' },
     { key: 'googleSpend', name: 'Google Spend', type: 'line' as const, stroke: '#e07a5f', strokeWidth: 1.5, dot: true, axis: 'left' },
@@ -48,7 +48,7 @@ export default function HourlyRevenueChart({ runningTotal, allCustomers }: Hourl
     ? (runningTotal ? hourlyRevenueDataAll : hourlyRevenueDataAllActuals)
     : (runningTotal ? hourlyRevenueData : hourlyRevenueDataActuals)
   const series = getSeries(allCustomers)
-  const title = runningTotal ? "Today's Cumulative Revenue by Hour" : "Today's Revenue by Hour"
+  const title = runningTotal ? "Mar 31 Cumulative Revenue by Hour" : "Mar 31 Revenue by Hour"
 
   return (
     <div className="bg-white rounded-lg border border-cream-dark p-4 flex-1">

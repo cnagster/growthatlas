@@ -26,12 +26,12 @@ export default function TopBar({
   hourlyRunningTotal, onHourlyRunningTotalChange,
   hourlyAllCustomers, onHourlyAllCustomersChange,
 }: TopBarProps) {
-  // Compute projected revenue: (current running total / days elapsed) * 31
+  // March is complete — show actual final revenue
   const currentDay = runningTotalsData.length
   const currentRevenue = runningTotalsData[currentDay - 1].runningActualRevenue
-  const projectedRevenue = Math.round((currentRevenue / currentDay) * 31)
+  const finalRevenue = Math.round(currentRevenue)
   const prevMonthRevenue = monthlySummary.february.totalRevenue
-  const projectedChange = Math.round((projectedRevenue - prevMonthRevenue) / prevMonthRevenue * 100)
+  const revenueChange = Math.round((finalRevenue - prevMonthRevenue) / prevMonthRevenue * 100)
 
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-cream border-b border-cream-dark">
@@ -54,15 +54,15 @@ export default function TopBar({
 
         {activeTab === 'monthly' ? (
           <>
-            {/* Projected Revenue */}
+            {/* March Final Revenue */}
             <div>
-              <div className="text-[10px] text-gray-500 font-medium">This Month&apos;s Projected Revenue</div>
+              <div className="text-[10px] text-gray-500 font-medium">March 2026 Revenue (Final)</div>
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-gray-900">${projectedRevenue.toLocaleString()}</span>
+                <span className="text-lg font-bold text-gray-900">${finalRevenue.toLocaleString()}</span>
                 <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
-                  projectedChange >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'
+                  revenueChange >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'
                 }`}>
-                  {projectedChange >= 0 ? '+' : ''}{projectedChange}%
+                  {revenueChange >= 0 ? '+' : ''}{revenueChange}% vs Feb
                 </span>
               </div>
             </div>
@@ -82,10 +82,10 @@ export default function TopBar({
           </>
         ) : (
           <>
-            {/* Today's Estimated Rev */}
+            {/* Last Day Revenue (Mar 31) */}
             <div>
               <div className="text-[10px] text-gray-500 font-medium">
-                {hourlyAllCustomers ? "Today\u2019s Estimated Total Rev" : "Today\u2019s Estimated New Rev"}
+                {hourlyAllCustomers ? "Mar 31 Total Rev" : "Mar 31 New Rev"}
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-lg font-bold text-gray-900">
