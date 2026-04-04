@@ -24,6 +24,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'monthly' | 'hourly'>('monthly')
   const [running, setRunning] = useState(true)
   const [dateRange, setDateRange] = useState<DateRange>([1, 31])
+  const [selectedMonth, setSelectedMonth] = useState('2026-03')
   const [hourlyRunningTotal, setHourlyRunningTotal] = useState(true)
   const [hourlyAllCustomers, setHourlyAllCustomers] = useState(false)
 
@@ -42,6 +43,8 @@ export default function Home() {
               onRunningChange={setRunning}
               dateRange={dateRange}
               onDateRangeChange={setDateRange}
+              selectedMonth={selectedMonth}
+              onMonthChange={setSelectedMonth}
               hourlyRunningTotal={hourlyRunningTotal}
               onHourlyRunningTotalChange={setHourlyRunningTotal}
               hourlyAllCustomers={hourlyAllCustomers}
@@ -51,14 +54,14 @@ export default function Home() {
             {activeTab === 'monthly' ? (
               <div className="p-4 space-y-4">
                 <div className="flex gap-4">
-                  <KPICards dateRange={dateRange} />
-                  <DailyRevenueChart running={running} dateRange={dateRange} />
+                  <KPICards dateRange={dateRange} selectedMonth={selectedMonth} />
+                  <DailyRevenueChart running={running} dateRange={dateRange} selectedMonth={selectedMonth} />
                 </div>
                 <div className="flex gap-4">
-                  <PaidVsOrganicChart dateRange={dateRange} />
-                  <SessionsCVRChart dateRange={dateRange} />
+                  <PaidVsOrganicChart dateRange={dateRange} selectedMonth={selectedMonth} />
+                  <SessionsCVRChart dateRange={dateRange} selectedMonth={selectedMonth} />
                 </div>
-                <AcquisitionMetricsChart dateRange={dateRange} />
+                <AcquisitionMetricsChart dateRange={dateRange} selectedMonth={selectedMonth} />
               </div>
             ) : (
               <div className="p-4 space-y-4">
@@ -67,10 +70,10 @@ export default function Home() {
                   <HourlyRevenueChart runningTotal={hourlyRunningTotal} allCustomers={hourlyAllCustomers} />
                 </div>
                 <div className="flex gap-4">
-                  <PaidVsOrganicChart dateRange={dateRange} />
-                  <SessionsCVRChart dateRange={dateRange} />
+                  <PaidVsOrganicChart dateRange={dateRange} selectedMonth={selectedMonth} />
+                  <SessionsCVRChart dateRange={dateRange} selectedMonth={selectedMonth} />
                 </div>
-                <AcquisitionMetricsChart dateRange={dateRange} />
+                <AcquisitionMetricsChart dateRange={dateRange} selectedMonth={selectedMonth} />
               </div>
             )}
           </>

@@ -21,9 +21,10 @@ const series = [
 
 interface DailyKPIsChartProps {
   dateRange: DateRange
+  selectedMonth?: string
 }
 
-export default function DailyKPIsChart({ dateRange }: DailyKPIsChartProps) {
+export default function DailyKPIsChart({ dateRange, selectedMonth = '2026-03' }: DailyKPIsChartProps) {
   const [hidden, setHidden] = useState<Record<string, boolean>>({})
 
   const handleLegendClick = useCallback((e: { dataKey?: string }) => {
@@ -32,7 +33,7 @@ export default function DailyKPIsChart({ dateRange }: DailyKPIsChartProps) {
     }
   }, [])
 
-  const data = useMemo(() => getDailyKPIsChartData(dateRange), [dateRange])
+  const data = useMemo(() => getDailyKPIsChartData(dateRange, selectedMonth), [dateRange, selectedMonth])
 
   const formatDollar = (val: number) => {
     if (val >= 1000) return `$${(val / 1000).toFixed(0)}k`

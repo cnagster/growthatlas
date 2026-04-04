@@ -143,6 +143,274 @@ const redditDailyRaw = [
   { date: '3/31', spend: 489.42, impressions: 63862, clicks: 144 },
 ];
 
+// --- Raw Shopify daily net sales January 2026 ---
+const shopifyDailyJan = [
+  { date: '1/1', netSales: 82858.05, orders: 374 },
+  { date: '1/2', netSales: 64954.86, orders: 311 },
+  { date: '1/3', netSales: 67970.99, orders: 304 },
+  { date: '1/4', netSales: 66160.34, orders: 354 },
+  { date: '1/5', netSales: 53367.00, orders: 289 },
+  { date: '1/6', netSales: 62186.90, orders: 305 },
+  { date: '1/7', netSales: 61943.51, orders: 277 },
+  { date: '1/8', netSales: 69806.83, orders: 307 },
+  { date: '1/9', netSales: 72593.12, orders: 335 },
+  { date: '1/10', netSales: 57251.30, orders: 285 },
+  { date: '1/11', netSales: 74905.94, orders: 339 },
+  { date: '1/12', netSales: 52634.42, orders: 261 },
+  { date: '1/13', netSales: 54063.41, orders: 274 },
+  { date: '1/14', netSales: 56793.64, orders: 241 },
+  { date: '1/15', netSales: 38679.73, orders: 212 },
+  { date: '1/16', netSales: 46961.43, orders: 221 },
+  { date: '1/17', netSales: 58649.12, orders: 280 },
+  { date: '1/18', netSales: 56339.78, orders: 252 },
+  { date: '1/19', netSales: 49374.69, orders: 283 },
+  { date: '1/20', netSales: 31699.49, orders: 161 },
+  { date: '1/21', netSales: 33145.35, orders: 184 },
+  { date: '1/22', netSales: 38852.91, orders: 195 },
+  { date: '1/23', netSales: 30793.36, orders: 170 },
+  { date: '1/24', netSales: 25094.70, orders: 137 },
+  { date: '1/25', netSales: 44887.14, orders: 205 },
+  { date: '1/26', netSales: 35997.75, orders: 172 },
+  { date: '1/27', netSales: 34255.16, orders: 159 },
+  { date: '1/28', netSales: 33410.95, orders: 196 },
+  { date: '1/29', netSales: 40110.78, orders: 206 },
+  { date: '1/30', netSales: 45833.68, orders: 203 },
+  { date: '1/31', netSales: 60217.17, orders: 266 },
+];
+
+// --- Raw Meta Ads daily January 2026 ---
+const metaDailyJan = [
+  { date: '1/1', spend: 22888.87, purchases: 312, impressions: 1233092, clicks: 21013 },
+  { date: '1/2', spend: 15924.87, purchases: 258, impressions: 838198, clicks: 14622 },
+  { date: '1/3', spend: 20425.55, purchases: 225, impressions: 1021554, clicks: 17627 },
+  { date: '1/4', spend: 21092.72, purchases: 244, impressions: 1170202, clicks: 21369 },
+  { date: '1/5', spend: 18148.95, purchases: 228, impressions: 1006949, clicks: 20178 },
+  { date: '1/6', spend: 17367.42, purchases: 253, impressions: 944446, clicks: 19744 },
+  { date: '1/7', spend: 17078.15, purchases: 197, impressions: 954435, clicks: 19256 },
+  { date: '1/8', spend: 16761.71, purchases: 235, impressions: 816342, clicks: 16591 },
+  { date: '1/9', spend: 19803.23, purchases: 239, impressions: 944325, clicks: 18834 },
+  { date: '1/10', spend: 17784.90, purchases: 182, impressions: 711230, clicks: 14220 },
+  { date: '1/11', spend: 18172.20, purchases: 186, impressions: 810696, clicks: 16529 },
+  { date: '1/12', spend: 15228.11, purchases: 146, impressions: 854017, clicks: 17064 },
+  { date: '1/13', spend: 18181.03, purchases: 202, impressions: 998318, clicks: 20537 },
+  { date: '1/14', spend: 16014.01, purchases: 182, impressions: 933045, clicks: 22687 },
+  { date: '1/15', spend: 16190.21, purchases: 175, impressions: 909028, clicks: 18563 },
+  { date: '1/16', spend: 15736.75, purchases: 144, impressions: 788804, clicks: 16671 },
+  { date: '1/17', spend: 15581.77, purchases: 216, impressions: 700629, clicks: 15619 },
+  { date: '1/18', spend: 18012.75, purchases: 161, impressions: 799250, clicks: 16418 },
+  { date: '1/19', spend: 16241.58, purchases: 218, impressions: 897695, clicks: 15911 },
+  { date: '1/20', spend: 11855.92, purchases: 93, impressions: 595809, clicks: 13522 },
+  { date: '1/21', spend: 15068.25, purchases: 126, impressions: 819162, clicks: 14954 },
+  { date: '1/22', spend: 10198.24, purchases: 128, impressions: 573120, clicks: 10707 },
+  { date: '1/23', spend: 10421.42, purchases: 85, impressions: 582093, clicks: 11684 },
+  { date: '1/24', spend: 8826.58, purchases: 83, impressions: 515036, clicks: 10301 },
+  { date: '1/25', spend: 8996.86, purchases: 90, impressions: 513072, clicks: 10293 },
+  { date: '1/26', spend: 7895.66, purchases: 97, impressions: 479304, clicks: 9463 },
+  { date: '1/27', spend: 7601.03, purchases: 97, impressions: 413418, clicks: 10065 },
+  { date: '1/28', spend: 7350.49, purchases: 87, impressions: 371626, clicks: 9376 },
+  { date: '1/29', spend: 7734.26, purchases: 95, impressions: 412914, clicks: 9781 },
+  { date: '1/30', spend: 12814.75, purchases: 150, impressions: 737432, clicks: 15870 },
+  { date: '1/31', spend: 13229.70, purchases: 129, impressions: 690481, clicks: 17204 },
+];
+
+// --- Raw Google Ads daily January 2026 ---
+const googleDailyJan = [
+  { date: '1/1', spend: 7573.96, clicks: 3640, conversions: 114.86 },
+  { date: '1/2', spend: 6113.64, clicks: 3181, conversions: 122.92 },
+  { date: '1/3', spend: 6314.97, clicks: 2755, conversions: 93.30 },
+  { date: '1/4', spend: 6274.37, clicks: 2850, conversions: 93.05 },
+  { date: '1/5', spend: 5978.36, clicks: 2888, conversions: 96.49 },
+  { date: '1/6', spend: 5475.08, clicks: 2656, conversions: 99.42 },
+  { date: '1/7', spend: 5501.78, clicks: 2632, conversions: 94.91 },
+  { date: '1/8', spend: 5397.10, clicks: 2444, conversions: 100.56 },
+  { date: '1/9', spend: 5120.47, clicks: 2561, conversions: 94.45 },
+  { date: '1/10', spend: 5505.02, clicks: 2669, conversions: 89.35 },
+  { date: '1/11', spend: 7458.62, clicks: 2866, conversions: 96.66 },
+  { date: '1/12', spend: 5808.29, clicks: 2191, conversions: 100.08 },
+  { date: '1/13', spend: 5227.44, clicks: 1827, conversions: 77.78 },
+  { date: '1/14', spend: 5075.19, clicks: 2004, conversions: 78.29 },
+  { date: '1/15', spend: 5119.92, clicks: 2647, conversions: 61.65 },
+  { date: '1/16', spend: 5265.96, clicks: 2691, conversions: 79.55 },
+  { date: '1/17', spend: 5575.89, clicks: 3013, conversions: 112.35 },
+  { date: '1/18', spend: 6142.69, clicks: 2688, conversions: 87.37 },
+  { date: '1/19', spend: 7007.03, clicks: 2966, conversions: 92.88 },
+  { date: '1/20', spend: 5205.92, clicks: 2294, conversions: 66.37 },
+  { date: '1/21', spend: 3797.29, clicks: 1565, conversions: 64.79 },
+  { date: '1/22', spend: 3733.36, clicks: 1626, conversions: 50.39 },
+  { date: '1/23', spend: 3946.77, clicks: 1572, conversions: 51.45 },
+  { date: '1/24', spend: 4047.21, clicks: 1564, conversions: 51.23 },
+  { date: '1/25', spend: 4481.64, clicks: 1787, conversions: 67.47 },
+  { date: '1/26', spend: 3869.84, clicks: 1703, conversions: 73.92 },
+  { date: '1/27', spend: 3529.02, clicks: 1726, conversions: 59.80 },
+  { date: '1/28', spend: 3458.08, clicks: 1630, conversions: 56.53 },
+  { date: '1/29', spend: 3582.59, clicks: 1604, conversions: 67.10 },
+  { date: '1/30', spend: 3658.22, clicks: 1651, conversions: 75.10 },
+  { date: '1/31', spend: 4256.54, clicks: 1865, conversions: 82.18 },
+];
+
+// --- Raw Reddit Ads daily January 2026 ---
+const redditDailyJan = [
+  { date: '1/1', spend: 700.68, impressions: 133487, clicks: 324 },
+  { date: '1/2', spend: 689.29, impressions: 150172, clicks: 366 },
+  { date: '1/3', spend: 709.21, impressions: 206907, clicks: 495 },
+  { date: '1/4', spend: 710.65, impressions: 231216, clicks: 553 },
+  { date: '1/5', spend: 729.23, impressions: 126210, clicks: 317 },
+  { date: '1/6', spend: 696.36, impressions: 135186, clicks: 376 },
+  { date: '1/7', spend: 690.98, impressions: 130877, clicks: 372 },
+  { date: '1/8', spend: 678.92, impressions: 124689, clicks: 341 },
+  { date: '1/9', spend: 672.46, impressions: 111934, clicks: 361 },
+  { date: '1/10', spend: 681.07, impressions: 113087, clicks: 361 },
+  { date: '1/11', spend: 696.28, impressions: 89840, clicks: 294 },
+  { date: '1/12', spend: 734.70, impressions: 91680, clicks: 277 },
+  { date: '1/13', spend: 716.53, impressions: 83594, clicks: 240 },
+  { date: '1/14', spend: 711.05, impressions: 83432, clicks: 263 },
+  { date: '1/15', spend: 704.12, impressions: 105925, clicks: 324 },
+  { date: '1/16', spend: 698.66, impressions: 118878, clicks: 280 },
+  { date: '1/17', spend: 701.25, impressions: 110723, clicks: 304 },
+  { date: '1/18', spend: 707.51, impressions: 124207, clicks: 334 },
+  { date: '1/19', spend: 724.22, impressions: 131892, clicks: 318 },
+  { date: '1/20', spend: 687.98, impressions: 138466, clicks: 372 },
+  { date: '1/21', spend: 617.92, impressions: 109899, clicks: 336 },
+  { date: '1/22', spend: 513.93, impressions: 89628, clicks: 248 },
+  { date: '1/23', spend: 490.17, impressions: 80494, clicks: 199 },
+  { date: '1/24', spend: 319.08, impressions: 48776, clicks: 143 },
+  { date: '1/25', spend: 253.48, impressions: 52950, clicks: 107 },
+  { date: '1/26', spend: 266.02, impressions: 57782, clicks: 131 },
+  { date: '1/27', spend: 235.32, impressions: 48805, clicks: 115 },
+  { date: '1/28', spend: 254.17, impressions: 47154, clicks: 102 },
+  { date: '1/29', spend: 250.49, impressions: 44879, clicks: 113 },
+  { date: '1/30', spend: 243.59, impressions: 42997, clicks: 109 },
+  { date: '1/31', spend: 251.80, impressions: 37106, clicks: 94 },
+];
+
+// --- Raw Shopify daily net sales February 2026 ---
+const shopifyDailyFeb = [
+  { date: '2/1', netSales: 56317.33, orders: 258 },
+  { date: '2/2', netSales: 45500.63, orders: 214 },
+  { date: '2/3', netSales: 36618.95, orders: 200 },
+  { date: '2/4', netSales: 44835.55, orders: 212 },
+  { date: '2/5', netSales: 50812.01, orders: 234 },
+  { date: '2/6', netSales: 35240.63, orders: 182 },
+  { date: '2/7', netSales: 41578.96, orders: 195 },
+  { date: '2/8', netSales: 48271.14, orders: 269 },
+  { date: '2/9', netSales: 37373.06, orders: 185 },
+  { date: '2/10', netSales: 61428.86, orders: 305 },
+  { date: '2/11', netSales: 42930.57, orders: 229 },
+  { date: '2/12', netSales: 33340.91, orders: 149 },
+  { date: '2/13', netSales: 48779.50, orders: 235 },
+  { date: '2/14', netSales: 48262.79, orders: 216 },
+  { date: '2/15', netSales: 72352.00, orders: 318 },
+  { date: '2/16', netSales: 74625.46, orders: 354 },
+  { date: '2/17', netSales: 41669.67, orders: 196 },
+  { date: '2/18', netSales: 52271.63, orders: 240 },
+  { date: '2/19', netSales: 45141.67, orders: 226 },
+  { date: '2/20', netSales: 52787.07, orders: 242 },
+  { date: '2/21', netSales: 57230.77, orders: 236 },
+  { date: '2/22', netSales: 75150.77, orders: 317 },
+  { date: '2/23', netSales: 45951.20, orders: 201 },
+  { date: '2/24', netSales: 34103.89, orders: 145 },
+  { date: '2/25', netSales: 37855.96, orders: 202 },
+  { date: '2/26', netSales: 48924.16, orders: 208 },
+  { date: '2/27', netSales: 48358.72, orders: 216 },
+  { date: '2/28', netSales: 64286.56, orders: 296 },
+];
+
+// --- Raw Meta Ads daily February 2026 ---
+const metaDailyFeb = [
+  { date: '2/1', spend: 13471.23, purchases: 154, impressions: 655798, clicks: 17274 },
+  { date: '2/2', spend: 14172.56, purchases: 130, impressions: 954799, clicks: 20367 },
+  { date: '2/3', spend: 10790.27, purchases: 130, impressions: 644466, clicks: 14688 },
+  { date: '2/4', spend: 12362.37, purchases: 125, impressions: 777487, clicks: 15251 },
+  { date: '2/5', spend: 12507.41, purchases: 124, impressions: 874211, clicks: 17997 },
+  { date: '2/6', spend: 9898.79, purchases: 100, impressions: 557144, clicks: 12567 },
+  { date: '2/7', spend: 11542.55, purchases: 110, impressions: 762868, clicks: 15035 },
+  { date: '2/8', spend: 13905.33, purchases: 136, impressions: 835262, clicks: 16557 },
+  { date: '2/9', spend: 11875.41, purchases: 112, impressions: 740166, clicks: 17532 },
+  { date: '2/10', spend: 12976.73, purchases: 206, impressions: 777294, clicks: 20650 },
+  { date: '2/11', spend: 13793.50, purchases: 146, impressions: 880627, clicks: 24172 },
+  { date: '2/12', spend: 11752.07, purchases: 111, impressions: 648166, clicks: 18299 },
+  { date: '2/13', spend: 14923.09, purchases: 165, impressions: 800941, clicks: 23663 },
+  { date: '2/14', spend: 12750.06, purchases: 147, impressions: 620297, clicks: 14483 },
+  { date: '2/15', spend: 20258.55, purchases: 209, impressions: 977949, clicks: 20250 },
+  { date: '2/16', spend: 24076.80, purchases: 256, impressions: 1161505, clicks: 23533 },
+  { date: '2/17', spend: 11452.22, purchases: 134, impressions: 566977, clicks: 11696 },
+  { date: '2/18', spend: 14454.60, purchases: 179, impressions: 701633, clicks: 17731 },
+  { date: '2/19', spend: 15752.08, purchases: 154, impressions: 863715, clicks: 17992 },
+  { date: '2/20', spend: 15993.40, purchases: 182, impressions: 855384, clicks: 17693 },
+  { date: '2/21', spend: 15151.36, purchases: 163, impressions: 703272, clicks: 15665 },
+  { date: '2/22', spend: 15208.18, purchases: 203, impressions: 909066, clicks: 13862 },
+  { date: '2/23', spend: 12411.01, purchases: 137, impressions: 630590, clicks: 12219 },
+  { date: '2/24', spend: 11878.95, purchases: 106, impressions: 640615, clicks: 12274 },
+  { date: '2/25', spend: 11994.08, purchases: 151, impressions: 574504, clicks: 14492 },
+  { date: '2/26', spend: 13943.33, purchases: 147, impressions: 703409, clicks: 16321 },
+  { date: '2/27', spend: 14931.38, purchases: 178, impressions: 722949, clicks: 14814 },
+  { date: '2/28', spend: 17093.84, purchases: 196, impressions: 795752, clicks: 16815 },
+];
+
+// --- Raw Google Ads daily February 2026 ---
+const googleDailyFeb = [
+  { date: '2/1', spend: 5014.64, clicks: 2215, conversions: 89.68 },
+  { date: '2/2', spend: 4663.01, clicks: 1909, conversions: 80.12 },
+  { date: '2/3', spend: 3566.14, clicks: 1641, conversions: 75.73 },
+  { date: '2/4', spend: 3661.07, clicks: 1588, conversions: 75.00 },
+  { date: '2/5', spend: 4316.91, clicks: 1872, conversions: 89.56 },
+  { date: '2/6', spend: 4207.46, clicks: 1812, conversions: 67.96 },
+  { date: '2/7', spend: 4523.93, clicks: 1907, conversions: 89.09 },
+  { date: '2/8', spend: 4508.41, clicks: 1766, conversions: 92.84 },
+  { date: '2/9', spend: 4133.44, clicks: 1666, conversions: 63.33 },
+  { date: '2/10', spend: 3383.14, clicks: 1466, conversions: 74.65 },
+  { date: '2/11', spend: 3438.94, clicks: 1467, conversions: 63.85 },
+  { date: '2/12', spend: 3424.84, clicks: 1419, conversions: 42.12 },
+  { date: '2/13', spend: 3746.49, clicks: 1567, conversions: 73.63 },
+  { date: '2/14', spend: 4192.96, clicks: 1706, conversions: 73.24 },
+  { date: '2/15', spend: 4469.15, clicks: 1916, conversions: 112.44 },
+  { date: '2/16', spend: 5110.51, clicks: 2177, conversions: 123.99 },
+  { date: '2/17', spend: 3471.65, clicks: 1861, conversions: 79.63 },
+  { date: '2/18', spend: 3626.86, clicks: 1808, conversions: 76.97 },
+  { date: '2/19', spend: 3720.50, clicks: 1736, conversions: 88.46 },
+  { date: '2/20', spend: 4105.18, clicks: 1795, conversions: 88.45 },
+  { date: '2/21', spend: 4401.74, clicks: 2019, conversions: 102.30 },
+  { date: '2/22', spend: 5196.96, clicks: 2330, conversions: 123.47 },
+  { date: '2/23', spend: 5187.69, clicks: 2047, conversions: 99.14 },
+  { date: '2/24', spend: 3405.52, clicks: 1528, conversions: 72.63 },
+  { date: '2/25', spend: 4345.16, clicks: 1715, conversions: 76.40 },
+  { date: '2/26', spend: 3848.77, clicks: 1776, conversions: 82.19 },
+  { date: '2/27', spend: 3824.51, clicks: 1647, conversions: 86.57 },
+  { date: '2/28', spend: 3680.61, clicks: 1732, conversions: 114.56 },
+];
+
+// --- Raw Reddit Ads daily February 2026 ---
+const redditDailyFeb = [
+  { date: '2/1', spend: 252.33, impressions: 41651, clicks: 129 },
+  { date: '2/2', spend: 265.81, impressions: 37627, clicks: 107 },
+  { date: '2/3', spend: 238.32, impressions: 38728, clicks: 92 },
+  { date: '2/4', spend: 252.43, impressions: 36508, clicks: 88 },
+  { date: '2/5', spend: 243.94, impressions: 37291, clicks: 91 },
+  { date: '2/6', spend: 242.59, impressions: 32198, clicks: 69 },
+  { date: '2/7', spend: 243.40, impressions: 33139, clicks: 86 },
+  { date: '2/8', spend: 245.68, impressions: 33426, clicks: 96 },
+  { date: '2/9', spend: 265.09, impressions: 47288, clicks: 129 },
+  { date: '2/10', spend: 237.99, impressions: 38525, clicks: 102 },
+  { date: '2/11', spend: 253.52, impressions: 39795, clicks: 104 },
+  { date: '2/12', spend: 249.30, impressions: 37909, clicks: 106 },
+  { date: '2/13', spend: 246.95, impressions: 35568, clicks: 104 },
+  { date: '2/14', spend: 250.76, impressions: 37606, clicks: 102 },
+  { date: '2/15', spend: 253.04, impressions: 40432, clicks: 99 },
+  { date: '2/16', spend: 265.21, impressions: 41044, clicks: 110 },
+  { date: '2/17', spend: 236.95, impressions: 37085, clicks: 93 },
+  { date: '2/18', spend: 253.89, impressions: 39557, clicks: 102 },
+  { date: '2/19', spend: 248.78, impressions: 42919, clicks: 95 },
+  { date: '2/20', spend: 246.09, impressions: 43342, clicks: 93 },
+  { date: '2/21', spend: 248.64, impressions: 40359, clicks: 96 },
+  { date: '2/22', spend: 252.88, impressions: 42608, clicks: 94 },
+  { date: '2/23', spend: 262.71, impressions: 41750, clicks: 96 },
+  { date: '2/24', spend: 239.38, impressions: 39194, clicks: 92 },
+  { date: '2/25', spend: 253.85, impressions: 40272, clicks: 89 },
+  { date: '2/26', spend: 250.39, impressions: 35668, clicks: 77 },
+  { date: '2/27', spend: 244.12, impressions: 29374, clicks: 56 },
+  { date: '2/28', spend: 249.91, impressions: 31664, clicks: 74 },
+];
+
 // --- Estimation constants (Shopify traffic/customer APIs unavailable) ---
 const NEW_CUSTOMER_RATIO = 0.65;
 const NEW_REVENUE_RATIO = 0.68;
@@ -150,41 +418,60 @@ const PAID_SESSION_RATIO = 0.82;
 const ORDER_CVR_EST = 0.031;
 
 // --- Compute daily metrics from real API data ---
-export const dailyMetrics = shopifyDailyRaw.map((shopDay, i) => {
-  const metaDay = metaDailyRaw[i];
-  const googleDay = googleDailyRaw[i];
-  const redditDay = redditDailyRaw[i];
-  const totalRevenue = shopDay.netSales;
-  const orders = shopDay.orders;
-  const sessions = Math.round(orders / ORDER_CVR_EST);
-  const paidSessions = Math.round(sessions * PAID_SESSION_RATIO);
-  const organicSessions = sessions - paidSessions;
-  const cvr = parseFloat(((orders / sessions) * 100).toFixed(4));
-  const aov = parseFloat((totalRevenue / orders).toFixed(2));
-  const newCustomers = Math.round(orders * NEW_CUSTOMER_RATIO);
-  const newRevenue = parseFloat((totalRevenue * NEW_REVENUE_RATIO).toFixed(2));
-  const returnRevenue = parseFloat((totalRevenue - newRevenue).toFixed(2));
-  const spend = parseFloat((metaDay.spend + googleDay.spend + redditDay.spend).toFixed(2));
-  const cac = parseFloat((spend / newCustomers).toFixed(2));
-  const roas = parseFloat((totalRevenue / spend).toFixed(2));
+function computeDailyMetrics(
+  shopData: typeof shopifyDailyRaw,
+  metaData: typeof metaDailyRaw,
+  googleData: typeof googleDailyRaw,
+  redditData: typeof redditDailyRaw,
+) {
+  return shopData.map((shopDay, i) => {
+    const metaDay = metaData[i];
+    const googleDay = googleData[i];
+    const redditDay = redditData[i];
+    const totalRevenue = shopDay.netSales;
+    const orders = shopDay.orders;
+    const sessions = Math.round(orders / ORDER_CVR_EST);
+    const paidSessions = Math.round(sessions * PAID_SESSION_RATIO);
+    const organicSessions = sessions - paidSessions;
+    const cvr = parseFloat(((orders / sessions) * 100).toFixed(4));
+    const aov = parseFloat((totalRevenue / orders).toFixed(2));
+    const newCustomers = Math.round(orders * NEW_CUSTOMER_RATIO);
+    const newRevenue = parseFloat((totalRevenue * NEW_REVENUE_RATIO).toFixed(2));
+    const returnRevenue = parseFloat((totalRevenue - newRevenue).toFixed(2));
+    const spend = parseFloat((metaDay.spend + googleDay.spend + redditDay.spend).toFixed(2));
+    const cac = parseFloat((spend / newCustomers).toFixed(2));
+    const roas = parseFloat((totalRevenue / spend).toFixed(2));
 
-  return {
-    date: shopDay.date,
-    sessions,
-    paidSessions,
-    organicSessions,
-    cvr,
-    orders,
-    aov,
-    newCustomers,
-    newRevenue,
-    returnRevenue,
-    totalRevenue,
-    spend,
-    cac,
-    roas,
-  };
-});
+    return {
+      date: shopDay.date,
+      sessions,
+      paidSessions,
+      organicSessions,
+      cvr,
+      orders,
+      aov,
+      newCustomers,
+      newRevenue,
+      returnRevenue,
+      totalRevenue,
+      spend,
+      cac,
+      roas,
+    };
+  });
+}
+
+const dailyMetricsJan = computeDailyMetrics(shopifyDailyJan, metaDailyJan, googleDailyJan, redditDailyJan);
+const dailyMetricsFeb = computeDailyMetrics(shopifyDailyFeb, metaDailyFeb, googleDailyFeb, redditDailyFeb);
+export const dailyMetrics = computeDailyMetrics(shopifyDailyRaw, metaDailyRaw, googleDailyRaw, redditDailyRaw);
+
+// Multi-month daily data access
+export const MONTHS_WITH_DAILY_DATA = ['2026-01', '2026-02', '2026-03'] as const;
+export const dailyMetricsByMonth: Record<string, typeof dailyMetrics> = {
+  '2026-01': dailyMetricsJan,
+  '2026-02': dailyMetricsFeb,
+  '2026-03': dailyMetrics,
+};
 
 // --- Targets ---
 export const targets = {
@@ -192,6 +479,23 @@ export const targets = {
   february: { revenueTarget: 1500000, dailyAvgTarget: 53571.43, cacTarget: 290, roasTarget: 3.2, cvrTarget: 2.3, aovTarget: 88 },
   march: { revenueTarget: 2500000, dailyAvgTarget: 80645.16, cacTarget: 280, roasTarget: 3.5, cvrTarget: 2.5, aovTarget: 90 },
 };
+
+const targetsByMonth: Record<string, typeof targets.march> = {
+  '2026-01': targets.january,
+  '2026-02': targets.february,
+  '2026-03': targets.march,
+};
+
+function getMonthTargets(month: string) {
+  return targetsByMonth[month] || targets.march;
+}
+
+function getPrevMonthSummary(month: string) {
+  if (month === '2026-03') return monthlySummary.february;
+  if (month === '2026-02') return monthlySummary.january;
+  // For Jan 2026, compare against Dec 2025 from monthlyRaw
+  return { totalRevenue: 3057351, targetRevenue: 1400000, pctOfTarget: 100, newRevenue: 2078999, returnRevenue: 978352, spend: 1032218, orders: 14701, sessions: 474226, newCustomers: 9556, aov: 208, cac: 108, roas: 2.96, cvr: 3.10, paidPct: 82, organicPct: 18 };
+}
 
 // --- Running totals for March (computed from dailyMetrics + targets) ---
 export const runningTotalsData = (() => {
@@ -310,20 +614,21 @@ function sliceByRange<T>(arr: T[], start: number, end: number): T[] {
   return arr.slice(start - 1, end);
 }
 
-export function getFilteredDailyRevenue(running: boolean, range: DateRange) {
+export function getFilteredDailyRevenue(running: boolean, range: DateRange, month = '2026-03') {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  const monthTargets = getMonthTargets(month);
   const [start, end] = range;
   if (running) {
-    // For running mode with a sub-range, recompute running totals from daily data
-    const filtered = sliceByRange(dailyMetrics, start, end);
+    const filtered = sliceByRange(metrics, start, end);
     let runActual = 0, runNew = 0, runSpend = 0;
     return filtered.map((d, i) => {
       runActual += d.totalRevenue;
       runNew += d.newRevenue;
       runSpend += d.spend;
       const dayCount = i + 1;
-      const targetRevenueRunning = targets.march.dailyAvgTarget * dayCount;
+      const targetRevenueRunning = monthTargets.dailyAvgTarget * dayCount;
       const targetNewRevenueRunning = Math.round(targetRevenueRunning * 0.65);
-      const targetSpendRunning = Math.round(targets.march.dailyAvgTarget * dayCount * 0.75);
+      const targetSpendRunning = Math.round(monthTargets.dailyAvgTarget * dayCount * 0.75);
       return {
         date: d.date,
         actualRevenueRunning: runActual,
@@ -336,19 +641,43 @@ export function getFilteredDailyRevenue(running: boolean, range: DateRange) {
       };
     });
   }
-  return sliceByRange(dailyRevenueChartDataNonRunning, start, end);
+  // Non-running: compute from metrics directly
+  const filtered = sliceByRange(metrics, start, end);
+  return filtered.map(d => ({
+    date: d.date,
+    actualRevenue: d.totalRevenue,
+    targetRevenue: monthTargets.dailyAvgTarget,
+    newRevenue: d.newRevenue,
+    targetNewRevenue: Math.round(monthTargets.dailyAvgTarget * 0.65),
+    spend: d.spend,
+    targetSpend: Math.round(monthTargets.dailyAvgTarget * 0.75),
+    deltaRevenue: parseFloat(((d.totalRevenue / monthTargets.dailyAvgTarget) * 100).toFixed(1)),
+  }));
 }
 
-export function getFilteredSessionsCVR(range: DateRange) {
-  return sliceByRange(sessionsCVRData, range[0], range[1]);
+export function getFilteredSessionsCVR(range: DateRange, month = '2026-03') {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  return sliceByRange(metrics, range[0], range[1]).map(d => ({
+    date: d.date,
+    sessions: d.sessions,
+    cvr: d.cvr,
+  }));
 }
 
-export function getFilteredAcquisition(range: DateRange) {
-  return sliceByRange(acquisitionData, range[0], range[1]);
+export function getFilteredAcquisition(range: DateRange, month = '2026-03') {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  return sliceByRange(metrics, range[0], range[1]).map(d => ({
+    date: d.date,
+    spend: Math.round(d.spend),
+    newCustomers: d.newCustomers,
+    cac: Math.round(d.cac),
+  }));
 }
 
-export function getFilteredKPIs(range: DateRange) {
-  const filtered = sliceByRange(dailyMetrics, range[0], range[1]);
+export function getFilteredKPIs(range: DateRange, month = '2026-03') {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  const prev = getPrevMonthSummary(month);
+  const filtered = sliceByRange(metrics, range[0], range[1]);
   const totalSpend = filtered.reduce((s, d) => s + d.spend, 0);
   const totalNewRevenue = filtered.reduce((s, d) => s + d.newRevenue, 0);
   const totalReturnRevenue = filtered.reduce((s, d) => s + d.returnRevenue, 0);
@@ -360,20 +689,20 @@ export function getFilteredKPIs(range: DateRange) {
   const roas = totalSpend > 0 ? totalRevenue / totalSpend : 0;
 
   return {
-    spend: { value: Math.round(totalSpend), change: pctChange(totalSpend, feb.spend), label: 'Spend' },
-    newOrders: { value: totalNewCustomers, change: pctChange(totalNewCustomers, feb.newCustomers), label: 'New Orders', suffix: '#' },
-    newRevenue: { value: Math.round(totalNewRevenue), change: pctChange(totalNewRevenue, feb.newRevenue), label: 'New Revenue' },
-    cac: { value: Math.round(avgCac), change: pctChange(avgCac, feb.cac), label: 'CAC' },
-    roas: { value: Math.round(roas * 100), change: pctChange(roas, feb.roas), label: 'ROAS', suffix: '%' },
-    newAov: { value: totalNewCustomers > 0 ? Math.round(totalNewRevenue / totalNewCustomers) : 0, change: pctChange(totalNewRevenue / totalNewCustomers, feb.newRevenue / feb.newCustomers), label: 'New AOV' },
-    returnOrders: { value: returnOrders, change: pctChange(returnOrders, feb.orders - feb.newCustomers), label: 'Return Orders', suffix: '#' },
-    returnRevenue: { value: Math.round(totalReturnRevenue), change: pctChange(totalReturnRevenue, feb.returnRevenue), label: 'Return Revenue' },
-    repeatAov: { value: returnOrders > 0 ? Math.round(totalReturnRevenue / returnOrders) : 0, change: pctChange(totalReturnRevenue / returnOrders, feb.returnRevenue / (feb.orders - feb.newCustomers)), label: 'Repeat AOV' },
-    totalOrders: { value: totalOrders, change: pctChange(totalOrders, feb.orders), label: 'Total Orders', suffix: '#' },
-    totalRevenue: { value: Math.round(totalRevenue), change: pctChange(totalRevenue, feb.totalRevenue), label: 'Total Revenue' },
-    totalAov: { value: totalOrders > 0 ? Math.round(totalRevenue / totalOrders) : 0, change: pctChange(totalRevenue / totalOrders, feb.totalRevenue / feb.orders), label: 'Total AOV' },
-    broas: { value: Math.round((totalRevenue / totalSpend) * 100), change: pctChange(totalRevenue / totalSpend, feb.totalRevenue / feb.spend), label: 'bROAS', suffix: '%' },
-    contributionDollars: { value: Math.round(totalRevenue - totalSpend), change: pctChange(totalRevenue - totalSpend, feb.totalRevenue - feb.spend), label: 'Contribution Dollars' },
+    spend: { value: Math.round(totalSpend), change: pctChange(totalSpend, prev.spend), label: 'Spend' },
+    newOrders: { value: totalNewCustomers, change: pctChange(totalNewCustomers, prev.newCustomers), label: 'New Orders', suffix: '#' },
+    newRevenue: { value: Math.round(totalNewRevenue), change: pctChange(totalNewRevenue, prev.newRevenue), label: 'New Revenue' },
+    cac: { value: Math.round(avgCac), change: pctChange(avgCac, prev.cac), label: 'CAC' },
+    roas: { value: Math.round(roas * 100), change: pctChange(roas, prev.roas), label: 'ROAS', suffix: '%' },
+    newAov: { value: totalNewCustomers > 0 ? Math.round(totalNewRevenue / totalNewCustomers) : 0, change: pctChange(totalNewRevenue / totalNewCustomers, prev.newRevenue / prev.newCustomers), label: 'New AOV' },
+    returnOrders: { value: returnOrders, change: pctChange(returnOrders, prev.orders - prev.newCustomers), label: 'Return Orders', suffix: '#' },
+    returnRevenue: { value: Math.round(totalReturnRevenue), change: pctChange(totalReturnRevenue, prev.returnRevenue), label: 'Return Revenue' },
+    repeatAov: { value: returnOrders > 0 ? Math.round(totalReturnRevenue / returnOrders) : 0, change: pctChange(totalReturnRevenue / returnOrders, prev.returnRevenue / (prev.orders - prev.newCustomers)), label: 'Repeat AOV' },
+    totalOrders: { value: totalOrders, change: pctChange(totalOrders, prev.orders), label: 'Total Orders', suffix: '#' },
+    totalRevenue: { value: Math.round(totalRevenue), change: pctChange(totalRevenue, prev.totalRevenue), label: 'Total Revenue' },
+    totalAov: { value: totalOrders > 0 ? Math.round(totalRevenue / totalOrders) : 0, change: pctChange(totalRevenue / totalOrders, prev.totalRevenue / prev.orders), label: 'Total AOV' },
+    broas: { value: Math.round((totalRevenue / totalSpend) * 100), change: pctChange(totalRevenue / totalSpend, prev.totalRevenue / prev.spend), label: 'bROAS', suffix: '%' },
+    contributionDollars: { value: Math.round(totalRevenue - totalSpend), change: pctChange(totalRevenue - totalSpend, prev.totalRevenue - prev.spend), label: 'Contribution Dollars' },
   };
 }
 
@@ -585,8 +914,9 @@ export interface HeatmapRow {
   contributionMargin: number;
 }
 
-export function getDailyPacingData(range: DateRange): HeatmapRow[] {
-  const filtered = sliceByRange(dailyMetrics, range[0], range[1]);
+export function getDailyPacingData(range: DateRange, month = '2026-03'): HeatmapRow[] {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  const filtered = sliceByRange(metrics, range[0], range[1]);
   return filtered.map(d => ({
     date: d.date,
     spend: Math.round(d.spend),
@@ -619,14 +949,16 @@ export interface DayOfWeekRow {
   contributionPct: number;
 }
 
-export function getDayOfWeekData(range: DateRange): DayOfWeekRow[] {
-  const filtered = sliceByRange(dailyMetrics, range[0], range[1]);
+export function getDayOfWeekData(range: DateRange, month = '2026-03'): DayOfWeekRow[] {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  const filtered = sliceByRange(metrics, range[0], range[1]);
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const buckets: Record<number, typeof filtered> = {};
+  const [yr, mm] = month.split('-').map(Number);
 
   filtered.forEach(d => {
     const dayNum = parseInt(d.date.split('/')[1]);
-    const dow = new Date(2026, 2, dayNum).getDay(); // March 2026
+    const dow = new Date(yr, mm - 1, dayNum).getDay();
     if (!buckets[dow]) buckets[dow] = [];
     buckets[dow].push(d);
   });
@@ -655,8 +987,9 @@ export function getDayOfWeekData(range: DateRange): DayOfWeekRow[] {
 }
 
 // Daily KPIs chart data
-export function getDailyKPIsChartData(range: DateRange) {
-  const filtered = sliceByRange(dailyMetrics, range[0], range[1]);
+export function getDailyKPIsChartData(range: DateRange, month = '2026-03') {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  const filtered = sliceByRange(metrics, range[0], range[1]);
   return filtered.map(d => ({
     date: d.date,
     spend: Math.round(d.spend),
@@ -1056,8 +1389,9 @@ export const weeklyYoYData: WeeklyYoYData[] = (() => {
   return weeks
 })()
 
-export function getFilteredPaidVsOrganic(range: DateRange) {
-  const filtered = sliceByRange(dailyMetrics, range[0], range[1]);
+export function getFilteredPaidVsOrganic(range: DateRange, month = '2026-03') {
+  const metrics = dailyMetricsByMonth[month] || dailyMetrics;
+  const filtered = sliceByRange(metrics, range[0], range[1]);
   const totalPaid = filtered.reduce((s, d) => s + d.paidSessions, 0);
   const totalOrganic = filtered.reduce((s, d) => s + d.organicSessions, 0);
   const total = totalPaid + totalOrganic;

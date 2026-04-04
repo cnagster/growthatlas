@@ -59,12 +59,12 @@ const cardOrder: CardDef[] = [
   { key: 'contributionDollars', show: () => true },
 ]
 
-export default function KPICards({ dateRange }: { dateRange: DateRange }) {
+export default function KPICards({ dateRange, selectedMonth = '2026-03' }: { dateRange: DateRange; selectedMonth?: string }) {
   const [showOrders, setShowOrders] = useState(false)
   const [showAov, setShowAov] = useState(false)
 
   const isFullMonth = dateRange[0] === 1 && dateRange[1] === 31
-  const data = isFullMonth ? kpiData : getFilteredKPIs(dateRange)
+  const data = isFullMonth ? kpiData : getFilteredKPIs(dateRange, selectedMonth)
 
   const visibleCards = useMemo(
     () => cardOrder.filter(c => c.show(showOrders, showAov)),

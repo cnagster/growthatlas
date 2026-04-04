@@ -13,6 +13,8 @@ interface TopBarProps {
   onRunningChange: (val: boolean) => void
   dateRange: DateRange
   onDateRangeChange: (range: DateRange) => void
+  selectedMonth: string
+  onMonthChange: (month: string) => void
   hourlyRunningTotal: boolean
   onHourlyRunningTotalChange: (val: boolean) => void
   hourlyAllCustomers: boolean
@@ -23,6 +25,7 @@ export default function TopBar({
   activeTab, onTabChange,
   running, onRunningChange,
   dateRange, onDateRangeChange,
+  selectedMonth, onMonthChange,
   hourlyRunningTotal, onHourlyRunningTotalChange,
   hourlyAllCustomers, onHourlyAllCustomersChange,
 }: TopBarProps) {
@@ -140,7 +143,7 @@ export default function TopBar({
             </div>
 
             {/* Date Range Picker */}
-            <DateRangePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
+            <DateRangePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} selectedMonth={selectedMonth} onMonthChange={onMonthChange} />
           </>
         ) : (
           <>

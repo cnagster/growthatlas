@@ -7,9 +7,9 @@ import {
 import { sessionsCVRData, getFilteredSessionsCVR } from '@/data/dashboardData'
 import type { DateRange } from '@/data/dashboardData'
 
-export default function SessionsCVRChart({ dateRange }: { dateRange: DateRange }) {
+export default function SessionsCVRChart({ dateRange, selectedMonth = '2026-03' }: { dateRange: DateRange; selectedMonth?: string }) {
   const isFullMonth = dateRange[0] === 1 && dateRange[1] === 31
-  const data = isFullMonth ? sessionsCVRData : getFilteredSessionsCVR(dateRange)
+  const data = isFullMonth ? sessionsCVRData : getFilteredSessionsCVR(dateRange, selectedMonth)
 
   return (
     <div className="bg-white rounded-lg border border-cream-dark p-4 flex-1">

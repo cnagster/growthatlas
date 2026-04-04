@@ -11,6 +11,7 @@ import type { DateRange } from '@/data/dashboardData'
 interface DailyRevenueChartProps {
   running: boolean
   dateRange: DateRange
+  selectedMonth?: string
 }
 
 // Series config for running mode
@@ -35,7 +36,7 @@ const dailySeries = [
   { key: 'deltaRevenue', name: 'Delta Revenue', type: 'line', stroke: '#7b68ee', strokeWidth: 1.5, dot: true, axis: 'right' },
 ] as const
 
-export default function DailyRevenueChart({ running, dateRange }: DailyRevenueChartProps) {
+export default function DailyRevenueChart({ running, dateRange, selectedMonth = '2026-03' }: DailyRevenueChartProps) {
   const [hidden, setHidden] = useState<Record<string, boolean>>({})
 
   const handleLegendClick = useCallback((e: { dataKey?: string }) => {
@@ -54,7 +55,7 @@ export default function DailyRevenueChart({ running, dateRange }: DailyRevenueCh
 
   const formatPacing = (val: number) => `${val}%`
 
-  const data = getFilteredDailyRevenue(running, dateRange)
+  const data = getFilteredDailyRevenue(running, dateRange, selectedMonth)
   const series = running ? runningSeries : dailySeries
   const title = running ? 'Daily Revenue' : 'Daily Revenue'
 

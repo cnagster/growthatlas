@@ -7,9 +7,9 @@ import {
 import { acquisitionData, getFilteredAcquisition } from '@/data/dashboardData'
 import type { DateRange } from '@/data/dashboardData'
 
-export default function AcquisitionMetricsChart({ dateRange }: { dateRange: DateRange }) {
+export default function AcquisitionMetricsChart({ dateRange, selectedMonth = '2026-03' }: { dateRange: DateRange; selectedMonth?: string }) {
   const isFullMonth = dateRange[0] === 1 && dateRange[1] === 31
-  const data = isFullMonth ? acquisitionData : getFilteredAcquisition(dateRange)
+  const data = isFullMonth ? acquisitionData : getFilteredAcquisition(dateRange, selectedMonth)
 
   return (
     <div className="bg-white rounded-lg border border-cream-dark p-4">

@@ -9,12 +9,13 @@ import type { DateRange } from '@/data/dashboardData'
 export default function DailyPacingPage() {
   const [heatmapRange, setHeatmapRange] = useState<DateRange>([1, 31])
   const [dowRange, setDowRange] = useState<DateRange>([1, 31])
+  const [selectedMonth, setSelectedMonth] = useState('2026-03')
 
   return (
     <div className="p-4 space-y-4">
-      <DailyHeatmap dateRange={heatmapRange} onDateRangeChange={setHeatmapRange} />
-      <DailyKPIsChart dateRange={heatmapRange} />
-      <DayOfWeekChart dateRange={dowRange} onDateRangeChange={setDowRange} />
+      <DailyHeatmap dateRange={heatmapRange} onDateRangeChange={setHeatmapRange} selectedMonth={selectedMonth} onMonthChange={setSelectedMonth} />
+      <DailyKPIsChart dateRange={heatmapRange} selectedMonth={selectedMonth} />
+      <DayOfWeekChart dateRange={dowRange} onDateRangeChange={setDowRange} selectedMonth={selectedMonth} onMonthChange={setSelectedMonth} />
     </div>
   )
 }

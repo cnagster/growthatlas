@@ -12,10 +12,12 @@ import DateRangePicker from './DateRangePicker'
 interface DayOfWeekChartProps {
   dateRange: DateRange
   onDateRangeChange: (range: DateRange) => void
+  selectedMonth?: string
+  onMonthChange?: (month: string) => void
 }
 
-export default function DayOfWeekChart({ dateRange, onDateRangeChange }: DayOfWeekChartProps) {
-  const data = useMemo(() => getDayOfWeekData(dateRange), [dateRange])
+export default function DayOfWeekChart({ dateRange, onDateRangeChange, selectedMonth = '2026-03', onMonthChange }: DayOfWeekChartProps) {
+  const data = useMemo(() => getDayOfWeekData(dateRange, selectedMonth), [dateRange, selectedMonth])
 
   const formatDollar = (val: number) => {
     if (val >= 1000) return `$${(val / 1000).toFixed(0)}k`
@@ -27,7 +29,7 @@ export default function DayOfWeekChart({ dateRange, onDateRangeChange }: DayOfWe
       <div className="flex items-center justify-between mb-1">
         <h3 className="text-sm font-semibold text-gray-800">Day of Week Analysis</h3>
         <div className="flex items-center gap-2">
-          <DateRangePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
+          <DateRangePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} selectedMonth={selectedMonth} onMonthChange={onMonthChange ?? (() => {})} />
           <button
             onClick={() => onDateRangeChange([1, 31])}
             className="text-xs text-gray-500 hover:text-gray-700"

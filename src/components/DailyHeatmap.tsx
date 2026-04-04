@@ -54,9 +54,11 @@ function getHeatmapColor(value: number, min: number, max: number, higherIsBetter
 interface DailyHeatmapProps {
   dateRange: DateRange
   onDateRangeChange: (range: DateRange) => void
+  selectedMonth?: string
+  onMonthChange?: (month: string) => void
 }
 
-export default function DailyHeatmap({ dateRange, onDateRangeChange }: DailyHeatmapProps) {
+export default function DailyHeatmap({ dateRange, onDateRangeChange, selectedMonth = '2026-03', onMonthChange }: DailyHeatmapProps) {
   const [visibleCols, setVisibleCols] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(columns.map(c => [c.key, true]))
   )
@@ -74,7 +76,7 @@ export default function DailyHeatmap({ dateRange, onDateRangeChange }: DailyHeat
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  const rawData = useMemo(() => getDailyPacingData(dateRange), [dateRange])
+  const rawData = useMemo(() => getDailyPacingData(dateRange, selectedMonth), [dateRange, selectedMonth])
   const data = useMemo(() => dateAsc ? [...rawData].reverse() : rawData, [rawData, dateAsc])
 
   const visibleColumns = columns.filter(c => c.key === 'date' || visibleCols[c.key])
@@ -121,7 +123,7 @@ export default function DailyHeatmap({ dateRange, onDateRangeChange }: DailyHeat
             )}
           </div>
 
-          <DateRangePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
+          <DateRangePicker dateRange={dateRange} onDateRangeChange={onDateRangeChange} selectedMonth={selectedMonth} onMonthChange={onMonthChange ?? (() => {})} />
         </div>
       </div>
 

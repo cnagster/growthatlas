@@ -4,9 +4,9 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
 import { paidVsOrganicData, getFilteredPaidVsOrganic } from '@/data/dashboardData'
 import type { DateRange } from '@/data/dashboardData'
 
-export default function PaidVsOrganicChart({ dateRange }: { dateRange: DateRange }) {
+export default function PaidVsOrganicChart({ dateRange, selectedMonth = '2026-03' }: { dateRange: DateRange; selectedMonth?: string }) {
   const isFullMonth = dateRange[0] === 1 && dateRange[1] === 31
-  const data = isFullMonth ? paidVsOrganicData : getFilteredPaidVsOrganic(dateRange)
+  const data = isFullMonth ? paidVsOrganicData : getFilteredPaidVsOrganic(dateRange, selectedMonth)
 
   return (
     <div className="bg-white rounded-lg border border-cream-dark p-4 w-56">
