@@ -429,7 +429,7 @@ const ORDER_CVR_EST = 0.031;
 // Compact daily data: [shopifyNetSales, shopifyOrders, metaSpend, googleSpend, redditSpend]
 // Covers 2022-01-01 through 2025-12-31 (1461 days)
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const allDailyRaw: Record<string, [number, number, number, number, number]> = {
+export const allDailyRaw: Record<string, [number, number, number, number, number]> = {
 '2022-01-01':[911.38,3,0,143.16,0],
 '2022-01-02':[339.15,1,0,156.52,0],
 '2022-01-03':[305.24,1,0,234.54,0],
