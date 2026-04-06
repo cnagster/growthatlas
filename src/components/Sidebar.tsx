@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronLeft, ChevronRight, BarChart3, Briefcase, Radio, Layers, TrendingUp } from 'lucide-react'
+import { ChevronLeft, ChevronRight, BarChart3, Briefcase, Radio, Layers, TrendingUp, ClipboardList } from 'lucide-react'
 import { useState } from 'react'
 
 const navItems = [
@@ -24,6 +24,7 @@ const navItems = [
     { label: 'Demographics', page: null },
   ]},
   { icon: TrendingUp, label: 'Projections', hasSubmenu: true },
+  { icon: ClipboardList, label: 'Paid Media L10', page: 'paid-media-l10' as const },
 ]
 
 interface SidebarProps {

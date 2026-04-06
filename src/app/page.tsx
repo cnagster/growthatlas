@@ -17,6 +17,7 @@ import ChannelDailyHeatmapsPage from '@/components/ChannelDailyHeatmapsPage'
 import ChannelWeeklyMonthlyPage from '@/components/ChannelWeeklyMonthlyPage'
 import GoogleDeepDivesPage from '@/components/GoogleDeepDivesPage'
 import DeepDivesAttributionPage from '@/components/DeepDivesAttributionPage'
+import PaidMediaL10Page from '@/components/l10/PaidMediaL10Page'
 import type { DateRange } from '@/data/dashboardData'
 
 export default function Home() {
@@ -83,6 +84,7 @@ export default function Home() {
         {activePage === 'channel-weekly-monthly' && <ChannelWeeklyMonthlyPage />}
         {activePage === 'google-deep-dives' && <GoogleDeepDivesPage />}
         {activePage === 'attribution' && <DeepDivesAttributionPage />}
+        {activePage === 'paid-media-l10' && <PaidMediaL10Page />}
       </div>
     </div>
   )
