@@ -7,34 +7,17 @@ import type { GoogleKeywordRow, GoogleProductRow } from '@/data/dashboardData'
 import TableDatePicker from './TableDatePicker'
 import type { DateOption, DatePreset } from './TableDatePicker'
 
-// Date options for the picker (daily dates Feb 15 - Mar 17)
-const dateOptions: DateOption[] = Array.from({ length: 31 }, (_, i) => {
-  const day = 15 + i
-  if (day <= 28) return { value: `2/15-${day}`, label: `Feb ${day}, 2026` }
-  const mDay = day - 28
-  return { value: `3/${mDay}`, label: `Mar ${mDay}, 2026` }
-}).slice(0, 31).filter((_, i) => i < 31)
-
-// Simpler: just use a fixed set of date options
-const simpleDateOptions: DateOption[] = [
-  { value: '2/15', label: 'Feb 15' }, { value: '2/16', label: 'Feb 16' }, { value: '2/17', label: 'Feb 17' },
-  { value: '2/18', label: 'Feb 18' }, { value: '2/19', label: 'Feb 19' }, { value: '2/20', label: 'Feb 20' },
-  { value: '2/21', label: 'Feb 21' }, { value: '2/22', label: 'Feb 22' }, { value: '2/23', label: 'Feb 23' },
-  { value: '2/24', label: 'Feb 24' }, { value: '2/25', label: 'Feb 25' }, { value: '2/26', label: 'Feb 26' },
-  { value: '2/27', label: 'Feb 27' }, { value: '2/28', label: 'Feb 28' },
-  { value: '3/1', label: 'Mar 1' }, { value: '3/2', label: 'Mar 2' }, { value: '3/3', label: 'Mar 3' },
-  { value: '3/4', label: 'Mar 4' }, { value: '3/5', label: 'Mar 5' }, { value: '3/6', label: 'Mar 6' },
-  { value: '3/7', label: 'Mar 7' }, { value: '3/8', label: 'Mar 8' }, { value: '3/9', label: 'Mar 9' },
-  { value: '3/10', label: 'Mar 10' }, { value: '3/11', label: 'Mar 11' }, { value: '3/12', label: 'Mar 12' },
-  { value: '3/13', label: 'Mar 13' }, { value: '3/14', label: 'Mar 14' }, { value: '3/15', label: 'Mar 15' },
-  { value: '3/16', label: 'Mar 16' }, { value: '3/17', label: 'Mar 17' },
-]
+// Date options for March 2026 (data period)
+const simpleDateOptions: DateOption[] = Array.from({ length: 31 }, (_, i) => ({
+  value: `3/${i + 1}`,
+  label: `Mar ${i + 1}`,
+}))
 
 const datePresets: DatePreset[] = [
-  { label: 'Last 7 Days', range: ['3/11', '3/17'] },
-  { label: 'Last 14 Days', range: ['3/4', '3/17'] },
-  { label: 'Last 30 Days', range: ['2/15', '3/17'] },
-  { label: 'Month to Date', range: ['3/1', '3/17'] },
+  { label: 'Last 7 Days', range: ['3/25', '3/31'] },
+  { label: 'Last 14 Days', range: ['3/18', '3/31'] },
+  { label: 'Full Month', range: ['3/1', '3/31'] },
+  { label: 'First Half', range: ['3/1', '3/15'] },
 ]
 
 type SortDir = 'asc' | 'desc'
@@ -266,7 +249,7 @@ function ProductsTable() {
 // ========== MAIN PAGE ==========
 export default function GoogleDeepDivesPage() {
   const [activeTab, setActiveTab] = useState<'keywords' | 'products'>('keywords')
-  const [dateRange, setDateRange] = useState<[string, string]>(['2/15', '3/17'])
+  const [dateRange, setDateRange] = useState<[string, string]>(['3/1', '3/31'])
 
   return (
     <div className="p-4 space-y-4">
